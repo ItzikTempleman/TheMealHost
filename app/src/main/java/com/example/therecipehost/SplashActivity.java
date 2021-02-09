@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.therecipehost.Constants.GlobalConstants;
-import com.example.therecipehost.Fragments.CustomLogin;
+import com.example.therecipehost.activities.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -29,10 +29,10 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, !GlobalConstants.isConfirmed ? CustomLogin.class : MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, !GlobalConstants.isConfirmed ? LoginActivity.class : MainActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }, 3000);
+        }, 0);
     }
 }

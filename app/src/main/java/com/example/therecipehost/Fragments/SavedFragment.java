@@ -1,5 +1,6 @@
 package com.example.therecipehost.Fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,13 +58,8 @@ public class SavedFragment extends Fragment {
     }
 
     public void getSavedList() {
-        sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(MEAL, null);
-        if (json != null) {
-            Type type = new TypeToken<List<Meal>>() {
-            }.getType();
-            savedMealList = gson.fromJson(json, type);
+        if (!Utils.getSavedMealList(getContext()).isEmpty()) {
+            updateMealList();
             savedMealAdapter.updateProducts(savedMealList);
         }
     }
@@ -72,7 +68,7 @@ public class SavedFragment extends Fragment {
         coordinatorLayout = view.findViewById(R.id.coordinator_layout);
         likedRV = view.findViewById(R.id.favorites_rv_saved);
         sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        savedMealAdapter = new SavedMealAdapter(getContext(), this);
+        savedMealAdapter = new SavedMealAdapter(getContext());
         LinearLayoutManager verticalLayout = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         likedRV.setLayoutManager(verticalLayout);
         likedRV.setAdapter(savedMealAdapter);
@@ -90,37 +86,18 @@ public class SavedFragment extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                Meal deletedMeal = getSelectedMeal().get(position);
+                Meal deletedMeal = Utils.getSavedMealList(requireContext()).get(position);
                 remove(deletedMeal);
             }
         };
     }
 
     public void remove(Meal deletedMeal) {
-        savedMealList.get(savedMealList.indexOf(deletedMeal)).setLiked(false);
-        savedMealList.remove(deletedMeal);
-        updateSharedPreferences();
-        savedMealAdapter.updateProducts(getSelectedMeal());
-
-        if (savedMealList.isEmpty())
-            Utils.toast(getContext(), "You have no saved or liked recipes at the moment");
+        Utils.remove(requireContext(), deletedMeal);
+        updateMealList();
+        savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
         handleSnackBar(deletedMeal);
-
     }
-
-    private List<Meal> getSelectedMeal() {
-        List<Meal> selectedMeal = new ArrayList<>();
-        selectedMeal.addAll(savedMealList);
-        return selectedMeal;
-    }
-
-    public void updateSharedPreferences() {
-        String updateMeal = new Gson().toJson(savedMealList);
-        editor = sharedPreferences.edit();
-        editor.putString(MEAL, updateMeal);
-        editor.apply();
-    }
-
 
     private void handleSnackBar(Meal deletedMeal) {
         Snackbar deleteSV = Snackbar.make(coordinatorLayout, "Recipe was removed from list", Snackbar.LENGTH_LONG);
@@ -140,13 +117,19 @@ public class SavedFragment extends Fragment {
                 tabLayout.setVisibility(View.VISIBLE);
             }
         }, 4000);
+        if (savedMealList.isEmpty()) Utils.toast(getContext(), "You have no saved or liked recipes at the moment");
     }
 
     private void retrieve(Meal deletedMeal) {
         savedMealList.add(deletedMeal);
         Snackbar retrieveSB = Snackbar.make(coordinatorLayout, "item retrieved", Snackbar.LENGTH_LONG);
         retrieveSB.show();
-        updateSharedPreferences();
-        savedMealAdapter.updateProducts(getSelectedMeal());
+        Utils.saveRecipe(requireContext(), deletedMeal);
+        updateMealList();
+        savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
+    }
+
+    private void updateMealList() {
+        savedMealList = Utils.getSavedMealList(requireContext());
     }
 }

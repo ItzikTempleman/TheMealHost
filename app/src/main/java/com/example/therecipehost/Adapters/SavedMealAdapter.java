@@ -1,6 +1,7 @@
 package com.example.therecipehost.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +23,9 @@ import java.util.List;
 public class SavedMealAdapter extends RecyclerView.Adapter<SavedMealAdapter.ViewHolder> {
     public List<Meal> meals = new ArrayList<>();
     private final Context context;
-    public SavedFragment savedFragment;
 
-    public SavedMealAdapter(Context context, SavedFragment savedFragment) {
+    public SavedMealAdapter(Context context) {
         this.context = context;
-        this.savedFragment = savedFragment;
     }
 
     @NonNull
@@ -37,11 +36,10 @@ public class SavedMealAdapter extends RecyclerView.Adapter<SavedMealAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull SavedMealAdapter.ViewHolder holder, int position) {
-
+        Log.d("POSITION" , String.valueOf(position));
         final Meal meal = meals.get(position);
         Utils.loadImage(meal.getThumbPath(), holder.imageInSaved);
         holder.titleInSaved.setText(meal.getTitle());
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

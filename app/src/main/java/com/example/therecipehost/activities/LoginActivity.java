@@ -1,4 +1,4 @@
-package com.example.therecipehost.Fragments;
+package com.example.therecipehost.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,7 +20,7 @@ import static com.example.therecipehost.Constants.GlobalConstants.PASSWORD_KEY;
 import static com.example.therecipehost.Constants.GlobalConstants.USER_NAME_KEY;
 import static com.example.therecipehost.Constants.GlobalConstants.isConfirmed;
 
-public class CustomLogin extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private TextInputLayout userNameET, passwordET;
     private Button nextBtn;
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^" + "(?=.*[a-zA-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" + ".{4,}" + "$");
@@ -89,10 +89,11 @@ public class CustomLogin extends AppCompatActivity {
     }
 
     private void moveToMainActivity() {
-        Intent intent = new Intent(CustomLogin.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra(USER_NAME_KEY, userName);
         intent.putExtra(PASSWORD_KEY, password);
         startActivity(intent);
+        finish();
     }
 
     private void saveState() {

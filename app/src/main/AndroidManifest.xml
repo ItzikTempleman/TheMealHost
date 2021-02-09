@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Fragments.CustomLogin" />
+        <activity android:name=".activities.LoginActivity" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan" />

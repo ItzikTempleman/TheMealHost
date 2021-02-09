@@ -52,7 +52,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
             public void onClick(View v) {
                 meal.setLiked(!meal.isLiked());
                 handleLikedState(holder, meal.isLiked());
-                if (meal.isLiked()) chooseMealFragment.handleRecipe(meal);
+                /*if (meal.isLiked()) */chooseMealFragment.handleRecipe(meal);
             }
         });
 

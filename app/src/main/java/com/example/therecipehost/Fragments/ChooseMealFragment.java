@@ -35,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -52,7 +53,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     public ImageView emptyStateIV;
     public List<Meal> mealList;
     private TextView featuredTV;
-    public SavedFragment savedFragment;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
@@ -78,7 +78,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
         mealRV = view.findViewById(R.id.choose_meal_rv);
         progressBar = view.findViewById(R.id.loading_pb);
         emptyStateIV = view.findViewById(R.id.choose_meal_empty_state_image_view);
-        savedMealAdapter = new SavedMealAdapter(getContext(), savedFragment);
+        savedMealAdapter = new SavedMealAdapter(getContext());
         mealAdapter = new MealAdapter(requireContext(), this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRV.setLayoutManager(linearLayoutManager);
@@ -156,8 +156,13 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void showEmptyState(boolean show) {
-        emptyStateIV.setVisibility(show ? View.VISIBLE : View.GONE);
-        Glide.with(this).load("https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png").into(emptyStateIV);
+        emptyStateIV.post(new Runnable() {
+            @Override
+            public void run() {
+                emptyStateIV.setVisibility(show ? View.VISIBLE : View.GONE);
+                Glide.with(ChooseMealFragment.this).load("https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png").into(emptyStateIV);
+            }
+        });
     }
 
     @Override
@@ -184,24 +189,13 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     public void handleRecipe(Meal meal) {
-        if (!meal.isLiked()) {
-            meal.setLiked(false);
-            savedFragment.remove(meal);
-        }
-        saveRecipe(meal);
+        if (meal.isLiked()) saveRecipe(meal);
+        else Utils.remove(requireContext(), meal);
     }
 
     public void saveRecipe(Meal meal) {
-        editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-
-        List<Meal> savedMeal = getSavedMealList();
-        savedMeal.add(meal);
-        savedMealAdapter.updateProducts(savedMeal);
-        // transform List to String
-        String updatedList = gson.toJson(savedMeal);
-        editor.putString(MEAL, updatedList);
-        editor.apply();
+        Utils.saveRecipe(requireContext(), meal);
+        savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
     }
 
     private List<Meal> getSavedMealList() {
