@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/meal_list_item_image_card_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        app:cardCornerRadius="12dp"
+        android:layout_margin="8dp"
+        android:elevation="12dp"
+        app:cardUseCompatPadding="true"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/image_rounded_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sign_in_background_rounded_corner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/recipe_thumb_image"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/food_image" />
+
+            <ImageView
+                android:id="@+id/add_to_favorites_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:src="@drawable/add_to_favorites" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:translationZ="2dp"
+        android:id="@+id/info_layout"
+        android:layout_width="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/meal_info_layout"
+        android:padding="8sp"
+        app:layout_constraintEnd_toEndOf="@+id/meal_list_item_image_card_view"
+        app:layout_constraintStart_toStartOf="@+id/meal_list_item_image_card_view"
+        app:layout_constraintBottom_toBottomOf="@+id/meal_list_item_image_card_view"
+        app:layout_constraintTop_toBottomOf="@+id/meal_list_item_image_card_view">
+
+        <TextView
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:id="@+id/meal_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/category_tv"
+            tools:text="meal title"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+
+
+        <TextView
+            android:id="@+id/nationality_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/meal_title_tv"
+            android:text="nationality"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/category_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="what kind of meal" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

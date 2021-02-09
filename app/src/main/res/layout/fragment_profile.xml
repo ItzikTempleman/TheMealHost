@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECEBEB">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Fragments.ProfileFragment">
+
+
+        <RelativeLayout
+            android:id="@+id/account_main_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_line_ui"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:background="@drawable/bottom_line_ui"
+                android:id="@+id/account_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="6dp"
+                android:text="@string/account"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_margin="6dp"
+                android:id="@+id/profile_iv"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_below="@id/account_title_tv"
+                android:src="@drawable/rounded_image_border" />
+
+            <TextView
+                android:layout_below="@+id/account_title_tv"
+                android:id="@+id/settings_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="26dp"
+                android:layout_toEndOf="@+id/profile_iv"
+                android:text="@string/name"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">בית המתכונים</string>
+    <string name="sign_in">הכנס</string>
+    <string name="forgot_password">שכחתי סיסמה</string>
+    <string name="welcome_to_recipe_host">ברוך הבא לבית המתכונים</string>
+    <string name="search_recipe">חפש מתכון</string>
+    <string name="Profile">פרופיל</string>
+    <string name="Saved">שמורים</string>
+    <string name="ingredients">מצרכים</string>
+    <string name="info">מידע</string>
+    <string name="amounts">כמויות</string>
+    <string name="instructions">אופן ההכנה</string>
+    <string name="Recipes">מתכונים</string>
+    <string name="prompt_email">אימייל</string>
+    <string name="prompt_password">סיסמה</string>
+    <string name="action_sign_in">כניסה/ הרשמה</string>
+    <string name="action_sign_in_short">הכנס</string>
+    <string name="welcome">ברוך הבא</string>
+    <string name="invalid_username">שם משתמש אינו תקין</string>
+    <string name="invalid_password">סיסמה חייבת להכיל   5 תווים</string>
+    <string name="login_failed">כניסה נכשלה</string>
+    <string name="hello_world">שלום</string>
+    <string name="account">חשבון</string>
+    <string name="name">שם</string>
+    <string name="liked_recipes">מתכונים אהובים</string>
+    <string name="find_your_recipe">מצא את המתכון</string>
+    <string name="title">Title</string>
+    <string name="might_interest_you">אולי יעניין אותך</string>
+    <string name="what_do_you_like">איזה סוג אוכל אתה מחפש?</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sign_in">Sign in</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="welcome_to_recipe_host">Welcome to Recipe Host</string>
+    <string name="search_recipe">Search recipe</string>
+</resources>

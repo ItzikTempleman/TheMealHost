@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">The Recipe Host</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="sign_in">Sign in</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="welcome_to_recipe_host">Welcome to Recipe Host</string>
+    <string name="search_recipe">Search recipe</string>
+    <string name="Profile">Profile</string>
+    <string name="Saved">Saved</string>
+    <string name="Recipes">Recipes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="info">Info</string>
+    <string name="amounts">Amounts</string>
+    <string name="instructions">Instructions</string>
+    <string name="account">Account</string>
+    <string name="name">Name</string>
+    <string name="liked_recipes">Liked recipes</string>
+    <string name="find_your_recipe">Find your recipe</string>
+    <string name="title">Title</string>
+    <string name="might_interest_you">Might interest you</string>
+    <string name="what_do_you_like">What kind of food do you like?</string>
+</resources>
