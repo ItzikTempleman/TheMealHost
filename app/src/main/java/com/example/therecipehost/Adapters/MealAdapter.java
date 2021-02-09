@@ -24,7 +24,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
     private final List<Meal> mealList = new ArrayList<>();
     private final Context context;
     private final ChooseMealFragment chooseMealFragment;
-    public static SavedFragment savedFragment;
 
     public MealAdapter(Context context, ChooseMealFragment chooseMealFragment) {
         this.context = context;
