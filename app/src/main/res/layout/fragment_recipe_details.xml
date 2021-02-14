@@ -48,8 +48,9 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:ems="8"
                 android:id="@+id/title_tv"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 android:text="@string/title"
@@ -58,6 +59,17 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/country_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="Nationality"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/image_card_view" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/image_card_view"
@@ -182,10 +194,9 @@
                 android:id="@+id/instructions_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:padding="4dp"
+                android:layout_margin="16dp"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/instructions_headline" />

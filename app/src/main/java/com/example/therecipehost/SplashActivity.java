@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.therecipehost.Constants.GlobalConstants;
 import com.example.therecipehost.activities.LoginActivity;
+
+import java.util.Locale;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -17,8 +19,15 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        ProgressBar progressBar = findViewById(R.id.splash_pb);
         checkIfLoginOk();
+        setImageTitle();
+    }
+
+    private void setImageTitle() {
+        ImageView imageView = findViewById(R.id.app_name);
+        if (Locale.getDefault().getLanguage().equals("en"))
+            imageView.setBackgroundResource(R.drawable.english_title_recipe_host);
+        else imageView.setBackgroundResource(R.drawable.project_title_hebrew);
     }
 
     private void checkIfLoginOk() {
@@ -33,6 +42,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 0);
+        }, 1000);
     }
 }

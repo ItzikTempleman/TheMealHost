@@ -12,9 +12,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.example.therecipehost.AsyncTasks.MealAsyncTask;
+import com.example.therecipehost.Fragments.ChooseMealFragment;
 import com.example.therecipehost.Fragments.RecipeDetailsFragment;
 import com.example.therecipehost.Fragments.SavedFragment;
 import com.example.therecipehost.MainActivity;
+import com.example.therecipehost.Models.IResponse;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
 import com.google.gson.Gson;
@@ -39,8 +42,8 @@ public class Utils {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    public static String toDecimalFormat(double price) {
-        return new DecimalFormat("0.0").format(price);
+    public static String toDecimalFormat(double doubleToChange) {
+        return new DecimalFormat("0.0").format(doubleToChange);
     }
 
     public static void changeFragment(FragmentManager fm, int id, Fragment fragment, boolean addToBackStack) {
@@ -62,6 +65,9 @@ public class Utils {
            changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.main_activity_frame_layout, recipeDetailsFragment, true);
         }
     }
+
+
+
 
     public static List<Meal> getSavedMealList(Context context){
         List<Meal> savedMealList = new ArrayList<>();
@@ -113,5 +119,12 @@ public class Utils {
         }
 
         return index;
+    }
+
+
+    public static void loadAsyncTask( String searchKey, IResponse iResponse){
+        MealAsyncTask mealAsyncTask = new MealAsyncTask(searchKey);
+        mealAsyncTask.setIResponse(iResponse);
+        mealAsyncTask.execute();
     }
 }

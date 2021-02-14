@@ -59,15 +59,25 @@ public class RecipeDetailsFragment extends Fragment {
         TextView mealIngredients = view.findViewById(R.id.ingredients_tv);
         TextView amounts = view.findViewById(R.id.amounts_tv);
         TextView instructions = view.findViewById(R.id.instructions_tv);
+        TextView nationality = view.findViewById(R.id.country_tv);
+
 
         ingredients = meal.getIngredients();
         amountsOfEach = meal.getAmountOfEach();
+
         mealTitleTV.setText(meal.getTitle());
         Glide.with(this).load(meal.getThumbPath()).into(mealIV);
         instructions.setText(meal.getInstructions());
 
+        String firstLetter = String.valueOf(meal.getNationality().charAt(0));
+        if (firstLetter.equals("A") || firstLetter.equals("E") || firstLetter.equals("I") || firstLetter.equals("O")) {
+            nationality.setText("An " + meal.getNationality().toLowerCase() + " cuisine");
+        } else
+            nationality.setText("A " + meal.getNationality().toLowerCase() + " cuisine");
+
         amounts.setText("".join("\n", amountsOfEach));
         mealIngredients.setText("".join("\n", ingredients));
+
         hideTabLayout();
     }
 

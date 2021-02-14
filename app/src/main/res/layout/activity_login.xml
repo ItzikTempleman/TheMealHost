@@ -69,7 +69,7 @@
             android:layout_marginStart="30dp"
             android:clickable="true"
             android:text="@string/forgot_password"
-            android:textColor="#5E7E32"
+            android:textColor="#00BCD4"
             android:textSize="14dp" />
 
 
