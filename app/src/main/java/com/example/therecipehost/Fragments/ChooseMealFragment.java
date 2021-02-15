@@ -182,6 +182,7 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     private void updateRelevantMealsIfNeeded(List<Meal> mealList) {
         List<Meal> savedMealList = getSavedMealList();
         if (!savedMealList.isEmpty()) {
+
             for (int i = 0; i < mealList.size(); i++) {
                 Meal currentMeal = mealList.get(i);
                 for (int j = 0; j < savedMealList.size(); j++) {
