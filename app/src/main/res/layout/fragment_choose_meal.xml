@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context="com.example.therecipehost.Fragments.ChooseMealFragment">
 
     <TextView
@@ -68,160 +69,75 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/featured_tv" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/choose_meal_empty_state_image_view"
         android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="70dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/no_results"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="wrap_content">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/featured_tv" />
 
-        <ImageView
-            android:id="@+id/choose_meal_empty_state_image_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="16dp"
-            android:src="@drawable/no_results"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/choose_category_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/what_do_you_like"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose_meal_rv" />
 
-        <TextView
-            android:id="@+id/choose_category_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="6dp"
-            android:text="@string/what_do_you_like"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose_category_tv">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_choose_meal_categories_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <androidx.constraintlayout.helper.widget.Flow
+                android:layout_margin="4dp"
+                android:id="@+id/fragment_choose_meal_categories_flow_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:flow_horizontalAlign="start"
+                app:flow_horizontalGap="16dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_maxElementsWrap="3"
+                app:flow_verticalGap="12dp"
+                app:flow_wrapMode="chain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            android:id="@+id/category_chicken"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_margin="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Chicken"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choose_category_tv" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="16dp"
+                android:enabled="false"
+                android:id="@+id/fragment_choose_meal_categories_filter_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_choose_meal_categories_flow_view"
+                android:text="Filter"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_beef"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_margin="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Beef"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/category_chicken"
-            app:layout_constraintTop_toBottomOf="@+id/choose_category_tv" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_fish"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_margin="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Fish"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/category_beef"
-            app:layout_constraintTop_toBottomOf="@+id/choose_category_tv" />
+    </ScrollView>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_lamb"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_margin="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Lamb"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/category_fish"
-            app:layout_constraintTop_toBottomOf="@+id/choose_category_tv" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_vegetarian"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Vegetarian"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category_beef" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_pasta"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_margin="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Pasta"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/category_vegetarian"
-            app:layout_constraintTop_toBottomOf="@+id/category_beef" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_starter"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_margin="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Starter"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/category_pasta"
-            app:layout_constraintTop_toBottomOf="@+id/category_beef" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_desert"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Desert"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category_pasta" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_side"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_margin="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Side"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/category_desert"
-            app:layout_constraintTop_toBottomOf="@+id/category_starter" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/category_other"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_margin="6dp"
-            android:background="@drawable/choose_meal_white"
-            android:text="Other"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/category_side"
-            app:layout_constraintTop_toBottomOf="@+id/category_starter" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

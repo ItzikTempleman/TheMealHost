@@ -74,12 +74,22 @@ public class Meal implements Parcelable {
         return thumbPath;
     }
 
-    public List<String> getIngredients() {
-        return ingredients;
+    public String getIngredients() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < ingredients.size(); i++) {
+            stringBuilder.append(ingredients.get(i));
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 
-    public List<String> getAmountOfEach() {
-        return amountOfEach;
+    public String getAmountOfEach() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < amountOfEach.size(); i++) {
+            stringBuilder.append(amountOfEach.get(i));
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 
     public String getId() {
@@ -102,7 +112,7 @@ public class Meal implements Parcelable {
             String amountKey = amountIter.next();
             try {
                 String amountsValue = amountObj.get(amountKey).toString();
-                if (amountKey.equals("strMeasure" + i) && !amountsValue.isEmpty()) {
+                if (amountKey.equals("strMeasure" + i) && !amountsValue.isEmpty() && !amountsValue.trim().isEmpty()) {
                     i++;
                     amountOfEach.add(amountsValue);
                 }

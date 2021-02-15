@@ -2,11 +2,13 @@ package com.example.therecipehost.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.helper.widget.Flow;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.therecipehost.Adapters.MealAdapter;
 import com.example.therecipehost.Adapters.SavedMealAdapter;
+import com.example.therecipehost.Models.Category;
 import com.example.therecipehost.Models.IResponse;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
@@ -38,6 +44,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,11 +58,24 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     private SavedMealAdapter savedMealAdapter;
     private ProgressBar progressBar;
     public ImageView emptyStateIV;
-    public static List<Meal> mealList;
+    public static List<Meal> mealList, filteredMeals;
     private TextView featuredTV;
     private SharedPreferences sharedPreferences;
-    private boolean isFiltered;
-    private Button chickenBtn, beefBtn, lambBtn, fishBtn, vegetarianBtn, otherBtn, starterBtn, desertBtn, pastaBtn, sideBtn;
+    private final Category[] categories = {
+            new Category("Chicken"),
+            new Category("Beef"),
+            new Category("Fish"),
+            new Category("Lamb"),
+            new Category("Vegetarian"),
+            new Category("Pasta"),
+            new Category("Starter"),
+            new Category("Dessert"),
+            new Category("Side"),
+            new Category("Other")
+    };
+
+    private final List<String> selectedCategories = new ArrayList<>();
+    private Button filterBtn;
 
     @Nullable
     @Override
@@ -69,21 +89,22 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
         super.onViewCreated(view, savedInstanceState);
 
         initView(view);
-        initAsyncTaskFirstTime();
+        getAllMeals();
         setListeners();
 
     }
 
-    private void initAsyncTaskFirstTime() {
+    private void getAllMeals() {
         mealList = new ArrayList<>();
         Utils.loadAsyncTask("", this);
     }
 
     private void initView(View view) {
-        initBtn(view);
+        initCategories(view);
         sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         featuredTV = view.findViewById(R.id.featured_tv);
         searchET = view.findViewById(R.id.search_recipe_et);
+        filterBtn = view.findViewById(R.id.fragment_choose_meal_categories_filter_button);
 
         RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
         progressBar = view.findViewById(R.id.loading_pb);
@@ -95,28 +116,28 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
         mealRV.setAdapter(mealAdapter);
     }
 
-    private void initBtn(View view) {
-        chickenBtn = view.findViewById(R.id.category_chicken);
-        beefBtn = view.findViewById(R.id.category_beef);
-        lambBtn = view.findViewById(R.id.category_lamb);
-        fishBtn = view.findViewById(R.id.category_fish);
-        vegetarianBtn = view.findViewById(R.id.category_vegetarian);
-        otherBtn = view.findViewById(R.id.category_other);
-        starterBtn = view.findViewById(R.id.category_starter);
-        desertBtn = view.findViewById(R.id.category_desert);
-        pastaBtn = view.findViewById(R.id.category_pasta);
-        sideBtn = view.findViewById(R.id.category_side);
+    private void initCategories(View view) {
+        ConstraintLayout container = view.findViewById(R.id.fragment_choose_meal_categories_container);
+        Flow flow = view.findViewById(R.id.fragment_choose_meal_categories_flow_view);
 
-        chickenBtn.setOnClickListener(this);
-        beefBtn.setOnClickListener(this);
-        lambBtn.setOnClickListener(this);
-        fishBtn.setOnClickListener(this);
-        vegetarianBtn.setOnClickListener(this);
-        otherBtn.setOnClickListener(this);
-        starterBtn.setOnClickListener(this);
-        desertBtn.setOnClickListener(this);
-        pastaBtn.setOnClickListener(this);
-        sideBtn.setOnClickListener(this);
+        int[] buttonsIds = new int[10];
+        for (int i = 0; i < 10; i++) {
+            Button button = new Button(requireContext());
+
+            String currentCategoryTitle = categories[i].getText();
+            button.setText(currentCategoryTitle);
+
+            categories[i].setId(i + 1);
+            button.setId(categories[i].getId());
+            button.setPadding(48, 0, 48, 0);
+            button.setAllCaps(false);
+            button.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.choose_meal_white));
+            button.setOnClickListener(this);
+
+            container.addView(button);
+            buttonsIds[i] = (button.getId());
+        }
+        flow.setReferencedIds(buttonsIds);
     }
 
 
@@ -135,12 +156,34 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
                 if (!s.toString().isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
                     featuredTV.setVisibility(View.GONE);
-                    hideKeyBoard();
+                    //hideKeyBoard();
                     Utils.loadAsyncTask(s.toString(), ChooseMealFragment.this);
 
                 } else featuredTV.setVisibility(View.VISIBLE);
             }
         });
+
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter();
+            }
+        });
+    }
+
+    private void filter() {
+        filteredMeals = new ArrayList<>();
+        for (int i = 0; i < mealList.size(); i++) {
+            for (int j = 0; j < selectedCategories.size(); j++) {
+                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))){
+                    filteredMeals.add(mealList.get(i));
+                }
+            }
+        }
+        Log.d("FilteredMeals", Arrays.toString(filteredMeals.toArray()));
+        if (!filteredMeals.isEmpty()){
+            mealAdapter.updateList(filteredMeals);
+        }
     }
 
     private void hideKeyBoard() {
@@ -233,7 +276,7 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
         else Utils.remove(requireContext(), meal);
     }
 
-    public void saveRecipe(Meal meal) {
+    private void saveRecipe(Meal meal) {
         Utils.saveRecipe(requireContext(), meal);
         savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
     }
@@ -254,130 +297,25 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.category_chicken:
-                if (!isFiltered) {
-                    addToFilter();
-                    chickenBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    chickenBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
+        Button button = (Button) v;
+        String currentButtonText = button.getText().toString();
 
-            case R.id.category_beef:
-                if (!isFiltered) {
-                    addToFilter();
-                    beefBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    beefBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
+        // Handling different Button 'UI' text and requested Category text
+        if (currentButtonText.equals("Fish")) currentButtonText = "Seafood";
+        else if (currentButtonText.equals("Other")) currentButtonText = "Miscellaneous";
 
-            case R.id.category_lamb:
-                if (!isFiltered) {
-                    addToFilter();
-                    lambBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    lambBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
-
-            case R.id.category_fish:
-                if (!isFiltered) {
-                    addToFilter();
-                    fishBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    fishBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
-
-
-            case R.id.category_vegetarian:
-                if (!isFiltered) {
-                    addToFilter();
-                    vegetarianBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    vegetarianBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
-
-
-            case R.id.category_other:
-                if (!isFiltered) {
-                    addToFilter();
-                    otherBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    otherBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
-
-
-            case R.id.category_starter:
-                if (!isFiltered) {
-                    addToFilter();
-                    starterBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    starterBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
-
-            case R.id.category_desert:
-                if (!isFiltered) {
-                    addToFilter();
-                    desertBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    desertBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
-
-            case R.id.category_pasta:
-                if (!isFiltered) {
-                    addToFilter();
-                    pastaBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    pastaBtn.setBackgroundResource(R.drawable.choose_meal_white);
-
-                }
-                isFiltered = !isFiltered;
-                break;
-
-            case R.id.category_side:
-                if (!isFiltered) {
-                    addToFilter();
-                    sideBtn.setBackgroundResource(R.drawable.choose_meal_filled);
-                } else {
-                    removeFilter();
-                    sideBtn.setBackgroundResource(R.drawable.choose_meal_white);
-                }
-                isFiltered = !isFiltered;
-                break;
+        if (!selectedCategories.contains(currentButtonText)) {
+            selectedCategories.add(currentButtonText);
+            button.setBackgroundResource(R.drawable.choose_meal_filled);
+            button.setTextColor(Color.WHITE);
         }
-    }
+        else {
+            selectedCategories.remove(currentButtonText);
+            button.setBackgroundResource(R.drawable.choose_meal_white);
+            button.setTextColor(Color.BLACK);
+        }
 
-    List<Meal> mealFilter = new ArrayList<>();
-
-    private void addToFilter() {
-
-    }
-
-    private void removeFilter() {
-
+        filterBtn.setEnabled(selectedCategories.size() > 0);
+        Log.d("SELECTED", Arrays.toString(selectedCategories.toArray()));
     }
 }

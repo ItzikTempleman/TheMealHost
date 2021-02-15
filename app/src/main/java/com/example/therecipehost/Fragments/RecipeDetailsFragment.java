@@ -52,7 +52,6 @@ public class RecipeDetailsFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        List<String> ingredients, amountsOfEach;
 
         ImageView mealIV = view.findViewById(R.id.details_recipe_image);
         TextView mealTitleTV = view.findViewById(R.id.title_tv);
@@ -60,10 +59,6 @@ public class RecipeDetailsFragment extends Fragment {
         TextView amounts = view.findViewById(R.id.amounts_tv);
         TextView instructions = view.findViewById(R.id.instructions_tv);
         TextView nationality = view.findViewById(R.id.country_tv);
-
-
-        ingredients = meal.getIngredients();
-        amountsOfEach = meal.getAmountOfEach();
 
         mealTitleTV.setText(meal.getTitle());
         Glide.with(this).load(meal.getThumbPath()).into(mealIV);
@@ -75,8 +70,8 @@ public class RecipeDetailsFragment extends Fragment {
         } else
             nationality.setText("A " + meal.getNationality().toLowerCase() + " cuisine");
 
-        amounts.setText("".join("\n", amountsOfEach));
-        mealIngredients.setText("".join("\n", ingredients));
+        amounts.setText(meal.getAmountOfEach());
+        mealIngredients.setText(meal.getIngredients());
 
         hideTabLayout();
     }
