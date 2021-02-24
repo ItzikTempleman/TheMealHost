@@ -14,4 +14,6 @@ public class GlobalConstants {
 
     public static boolean isConfirmed;
 
+    public static final String IS_FRAGMENT_ALIVE_STR = "isAlive";
+    public static boolean isChooseMealFragmentAlreadyAlive;
 }

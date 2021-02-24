@@ -7,7 +7,7 @@ public class Category {
 
     private String text;
     private int id;
-    private boolean isClicked;
+
 
     public Category(String text){
         this.text = text;
@@ -29,11 +29,5 @@ public class Category {
         this.id = id;
     }
 
-    public boolean isClicked() {
-        return isClicked;
-    }
 
-    public void setClicked(boolean clicked) {
-        isClicked = clicked;
-    }
 }

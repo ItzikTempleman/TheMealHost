@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -39,6 +40,7 @@ import com.example.therecipehost.Utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,8 +51,10 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.therecipehost.Constants.GlobalConstants.IS_FRAGMENT_ALIVE_STR;
 import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
+import static com.example.therecipehost.Constants.GlobalConstants.isChooseMealFragmentAlreadyAlive;
 
 public class ChooseMealFragment extends Fragment implements IResponse, View.OnClickListener {
     private EditText searchET;
@@ -58,6 +62,7 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     private SavedMealAdapter savedMealAdapter;
     private ProgressBar progressBar;
     public ImageView emptyStateIV;
+    private RecyclerView mealRV;
     public static List<Meal> mealList, filteredMeals;
     private TextView featuredTV;
     private SharedPreferences sharedPreferences;
@@ -77,12 +82,24 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     private final List<String> selectedCategories = new ArrayList<>();
     private Button filterBtn;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NotNull Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean(IS_FRAGMENT_ALIVE_STR, isChooseMealFragmentAlreadyAlive);
+    }
+
     @Nullable
     @Override
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_choose_meal, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -106,7 +123,7 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
         searchET = view.findViewById(R.id.search_recipe_et);
         filterBtn = view.findViewById(R.id.fragment_choose_meal_categories_filter_button);
 
-        RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
+        mealRV = view.findViewById(R.id.choose_meal_rv);
         progressBar = view.findViewById(R.id.loading_pb);
         emptyStateIV = view.findViewById(R.id.choose_meal_empty_state_image_view);
         savedMealAdapter = new SavedMealAdapter(getContext());
@@ -114,6 +131,7 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRV.setLayoutManager(linearLayoutManager);
         mealRV.setAdapter(mealAdapter);
+        Utils.handleSwiping(mealRV);
     }
 
     private void initCategories(View view) {
@@ -175,13 +193,13 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
         filteredMeals = new ArrayList<>();
         for (int i = 0; i < mealList.size(); i++) {
             for (int j = 0; j < selectedCategories.size(); j++) {
-                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))){
+                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {
                     filteredMeals.add(mealList.get(i));
                 }
             }
         }
         Log.d("FilteredMeals", Arrays.toString(filteredMeals.toArray()));
-        if (!filteredMeals.isEmpty()){
+        if (!filteredMeals.isEmpty()) {
             mealAdapter.updateList(filteredMeals);
         }
     }
@@ -308,8 +326,7 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
             selectedCategories.add(currentButtonText);
             button.setBackgroundResource(R.drawable.choose_meal_filled);
             button.setTextColor(Color.WHITE);
-        }
-        else {
+        } else {
             selectedCategories.remove(currentButtonText);
             button.setBackgroundResource(R.drawable.choose_meal_white);
             button.setTextColor(Color.BLACK);
