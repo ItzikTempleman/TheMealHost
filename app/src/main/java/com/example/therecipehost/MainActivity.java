@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
 
         );
+        // press command + right mouse click to see function documentation :)
+        viewPager2.setOffscreenPageLimit(1);
         tabLayoutMediator.attach();
 //        tabLayout.addOnTabSelectedListener(this);
 //        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#4287f5"));
