@@ -61,7 +61,7 @@ public class SavedFragment extends Fragment {
         if (!Utils.getSavedMealList(getContext()).isEmpty()) {
             updateMealList();
             savedMealAdapter.updateProducts(savedMealList);
-        }
+        }else savedMealAdapter.updateProducts(new ArrayList<>());
     }
 
     private void initView(View view) {
@@ -132,5 +132,12 @@ public class SavedFragment extends Fragment {
 
     private void updateMealList() {
         savedMealList = Utils.getSavedMealList(requireContext());
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSavedList();
     }
 }
