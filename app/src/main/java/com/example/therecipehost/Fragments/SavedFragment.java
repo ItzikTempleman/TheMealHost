@@ -73,7 +73,6 @@ public class SavedFragment extends Fragment {
         likedRV.setLayoutManager(verticalLayout);
         likedRV.setAdapter(savedMealAdapter);
         handleSwiping();
-        Utils.handleSwiping(likedRV);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(likedRV);
     }
 

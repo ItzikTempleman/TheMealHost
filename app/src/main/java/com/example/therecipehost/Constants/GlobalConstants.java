@@ -9,6 +9,7 @@ public class GlobalConstants {
     public static final String USER_NAME_KEY = "username";
     public static final String PASSWORD_KEY = "password";
 
+    public static final String USER_INFO_SHARED_PREFS = "userInfoSharedPrefs";
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String IS_CONFIRMED_STR = "isConfirmed";
 
@@ -16,4 +17,6 @@ public class GlobalConstants {
 
     public static final String IS_FRAGMENT_ALIVE_STR = "isAlive";
     public static boolean isChooseMealFragmentAlreadyAlive;
+
+
 }
