@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.therecipehost.AsyncTasks.MealAsyncTask;
+import com.example.therecipehost.Fragments.FilterDialogFragment;
 import com.example.therecipehost.Fragments.RecipeDetailsFragment;
 import com.example.therecipehost.MainActivity;
 import com.example.therecipehost.Models.IResponse;
@@ -57,13 +59,11 @@ public class Utils {
     }
 
     public static void moveToDetailsFragment(Meal meal, Context context) {
-        if (context instanceof MainActivity) {
             RecipeDetailsFragment recipeDetailsFragment = new RecipeDetailsFragment();
             Bundle bundle = new Bundle();
             bundle.putParcelable(MEAL, meal);
             recipeDetailsFragment.setArguments(bundle);
             changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.main_activity_frame_layout, recipeDetailsFragment, true);
-        }
     }
 
 
@@ -116,7 +116,6 @@ public class Utils {
                 index = i;
             }
         }
-
         return index;
     }
 
@@ -151,4 +150,5 @@ public class Utils {
             }
         });
     }
+
 }

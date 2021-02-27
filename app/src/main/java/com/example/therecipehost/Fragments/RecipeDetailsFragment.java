@@ -9,13 +9,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
-
-import java.util.List;
 
 import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
 import static com.example.therecipehost.MainActivity.tabLayout;
@@ -34,6 +33,9 @@ public class RecipeDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+//        NestedScrollView scrollView = view.findViewById(R.id.nested_scroll_view);
+//        scrollView.requestDisallowInterceptTouchEvent(true);
+
 
         if (isMealInArguments()) {
             initViews(view);

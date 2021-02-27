@@ -59,8 +59,9 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Utils.moveToDetailsFragment(meal, context);
+                //chooseMealFragment.getView().setVisibility(View.GONE);
             }
-        });
+        });  //chooseMealFragment.getView().setVisibility(View.VISIBLE);
     }
 
     private void handleLikedState(ViewHolder holder, boolean getLiked) {

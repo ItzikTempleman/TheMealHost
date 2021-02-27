@@ -132,6 +132,10 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/search_recipe_et.xml"
     },
     {
+        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_filter_view.xml.flat",
+        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/filter_view.xml"
+    },
+    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
     },

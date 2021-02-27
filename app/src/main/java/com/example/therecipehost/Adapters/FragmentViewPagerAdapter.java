@@ -10,6 +10,10 @@ import com.example.therecipehost.Fragments.ProfileFragment;
 import com.example.therecipehost.Fragments.SavedFragment;
 
 public class FragmentViewPagerAdapter extends FragmentStateAdapter {
+    public final ChooseMealFragment chooseMealFragment = new ChooseMealFragment();
+    public final SavedFragment savedFragment = new SavedFragment();
+    public final ProfileFragment profileFragment = new ProfileFragment();
+
     public FragmentViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -17,13 +21,13 @@ public class FragmentViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position){
+        switch (position) {
             case 0:
-                return new ChooseMealFragment();
+                return chooseMealFragment;
             case 1:
-                return new SavedFragment();
+                return savedFragment;
             default:
-                return new ProfileFragment();
+                return profileFragment;
         }
     }
 

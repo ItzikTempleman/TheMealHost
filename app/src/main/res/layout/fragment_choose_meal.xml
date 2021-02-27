@@ -93,51 +93,75 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choose_meal_rv" />
-
-    <ScrollView
-        android:layout_marginTop="16dp"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choose_category_tv">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fragment_choose_meal_categories_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.constraintlayout.helper.widget.Flow
-                android:layout_margin="4dp"
-                android:id="@+id/fragment_choose_meal_categories_flow_view"
+            <androidx.appcompat.widget.AppCompatButton
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choose_category_tv"
+                android:id="@+id/move_to_filter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:flow_horizontalAlign="start"
-                app:flow_horizontalGap="16dp"
-                app:flow_horizontalStyle="packed"
-                app:flow_maxElementsWrap="3"
-                app:flow_verticalGap="12dp"
-                app:flow_wrapMode="chain"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginTop="16dp"
-                android:enabled="false"
-                android:id="@+id/fragment_choose_meal_categories_filter_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_choose_meal_categories_flow_view"
-                android:text="Filter"
+                android:text="Filter by category"
                 android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/next_sign_in_btn"
+/>
+            <FrameLayout
+                android:id="@+id/filter_frame_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="400dp"
+                android:layout_height="400dp"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <ScrollView-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/choose_category_tv">-->
 
-    </ScrollView>
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/fragment_choose_meal_categories_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <androidx.constraintlayout.helper.widget.Flow-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:id="@+id/fragment_choose_meal_categories_flow_view"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:flow_horizontalAlign="start"-->
+<!--                app:flow_horizontalGap="16dp"-->
+<!--                app:flow_horizontalStyle="packed"-->
+<!--                app:flow_maxElementsWrap="3"-->
+<!--                app:flow_verticalGap="12dp"-->
+<!--                app:flow_wrapMode="chain"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:enabled="false"-->
+<!--                android:id="@+id/fragment_choose_meal_categories_filter_button"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/fragment_choose_meal_categories_flow_view"-->
+<!--                android:text="Filter"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </ScrollView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,10 +36,7 @@ import static com.example.therecipehost.MainActivity.tabLayout;
 
 
 public class SavedFragment extends Fragment {
-    private RecyclerView likedRV;
     public List<Meal> savedMealList;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
     private SavedMealAdapter savedMealAdapter;
     private ItemTouchHelper.SimpleCallback itemTouchHelperCallback;
     private CoordinatorLayout coordinatorLayout;
@@ -66,8 +63,7 @@ public class SavedFragment extends Fragment {
 
     private void initView(View view) {
         coordinatorLayout = view.findViewById(R.id.coordinator_layout);
-        likedRV = view.findViewById(R.id.favorites_rv_saved);
-        sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        RecyclerView likedRV = view.findViewById(R.id.favorites_rv_saved);
         savedMealAdapter = new SavedMealAdapter(getContext());
         LinearLayoutManager verticalLayout = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         likedRV.setLayoutManager(verticalLayout);
@@ -93,6 +89,7 @@ public class SavedFragment extends Fragment {
     }
 
     public void remove(Meal deletedMeal) {
+        deletedMeal.setLiked(false);
         Utils.remove(requireContext(), deletedMeal);
         updateMealList();
         savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
@@ -116,7 +113,7 @@ public class SavedFragment extends Fragment {
             public void run() {
                 tabLayout.setVisibility(View.VISIBLE);
             }
-        }, 4000);
+        }, 3000);
         if (savedMealList.isEmpty()) Utils.toast(getContext(), "You have no saved or liked recipes at the moment");
     }
 

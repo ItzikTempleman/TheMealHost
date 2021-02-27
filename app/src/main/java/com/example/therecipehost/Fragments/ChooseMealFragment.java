@@ -1,6 +1,5 @@
 package com.example.therecipehost.Fragments;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,10 +9,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -40,7 +37,6 @@ import com.example.therecipehost.Utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,10 +47,10 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.therecipehost.Constants.GlobalConstants.IS_FRAGMENT_ALIVE_STR;
 import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
-import static com.example.therecipehost.Constants.GlobalConstants.isChooseMealFragmentAlreadyAlive;
+
+
 
 public class ChooseMealFragment extends Fragment implements IResponse, View.OnClickListener {
     private EditText searchET;
@@ -80,17 +76,11 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     };
 
     private final List<String> selectedCategories = new ArrayList<>();
-    private Button filterBtn;
+    private Button filterBtn, moveToFilterBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onSaveInstanceState(@NotNull Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putBoolean(IS_FRAGMENT_ALIVE_STR, isChooseMealFragmentAlreadyAlive);
     }
 
     @Nullable
@@ -117,49 +107,56 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     }
 
     private void initView(View view) {
-        initCategories(view);
+        //initCategories(view);
         sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         featuredTV = view.findViewById(R.id.featured_tv);
         searchET = view.findViewById(R.id.search_recipe_et);
         filterBtn = view.findViewById(R.id.fragment_choose_meal_categories_filter_button);
-
+        moveToFilterBtn = view.findViewById(R.id.move_to_filter);
         mealRV = view.findViewById(R.id.choose_meal_rv);
         progressBar = view.findViewById(R.id.loading_pb);
         emptyStateIV = view.findViewById(R.id.choose_meal_empty_state_image_view);
         savedMealAdapter = new SavedMealAdapter(getContext());
         mealAdapter = new MealAdapter(requireContext(), this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, true);
         mealRV.setLayoutManager(linearLayoutManager);
         mealRV.setAdapter(mealAdapter);
         Utils.handleSwiping(mealRV);
     }
 
-    private void initCategories(View view) {
-        ConstraintLayout container = view.findViewById(R.id.fragment_choose_meal_categories_container);
-        Flow flow = view.findViewById(R.id.fragment_choose_meal_categories_flow_view);
 
-        int[] buttonsIds = new int[10];
-        for (int i = 0; i < 10; i++) {
-            Button button = new Button(requireContext());
-
-            String currentCategoryTitle = categories[i].getText();
-            button.setText(currentCategoryTitle);
-
-            categories[i].setId(i + 1);
-            button.setId(categories[i].getId());
-            button.setPadding(48, 0, 48, 0);
-            button.setAllCaps(false);
-            button.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.choose_meal_white));
-            button.setOnClickListener(this);
-
-            container.addView(button);
-            buttonsIds[i] = (button.getId());
-        }
-        flow.setReferencedIds(buttonsIds);
-    }
+//    private void initCategories(View view) {
+//        ConstraintLayout container = view.findViewById(R.id.fragment_choose_meal_categories_container);
+//        Flow flow = view.findViewById(R.id.fragment_choose_meal_categories_flow_view);
+//
+//        int[] buttonsIds = new int[10];
+//        for (int i = 0; i < 10; i++) {
+//            Button button = new Button(requireContext());
+//
+//            String currentCategoryTitle = categories[i].getText();
+//            button.setText(currentCategoryTitle);
+//
+//            categories[i].setId(i + 1);
+//            button.setId(categories[i].getId());
+//            button.setPadding(48, 0, 48, 0);
+//            button.setAllCaps(false);
+//            button.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.choose_meal_white));
+//            button.setOnClickListener(this);
+//
+//            container.addView(button);
+//            buttonsIds[i] = (button.getId());
+//        }
+//        flow.setReferencedIds(buttonsIds);
+//    }
 
 
     private void setListeners() {
+        moveToFilterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToFilterDialogFragment();
+            }
+        });
         searchET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -181,33 +178,39 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
             }
         });
 
-        filterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                filter();
-            }
-        });
+//        filterBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                filter();
+//            }
+//        });
     }
 
-    private void filter() {
-        filteredMeals = new ArrayList<>();
-        for (int i = 0; i < mealList.size(); i++) {
-            for (int j = 0; j < selectedCategories.size(); j++) {
-                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {
-                    filteredMeals.add(mealList.get(i));
-                }
-            }
-        }
-        Log.d("FilteredMeals", Arrays.toString(filteredMeals.toArray()));
-        if (!filteredMeals.isEmpty()) {
-            mealAdapter.updateList(filteredMeals);
-        }
+    private void moveToFilterDialogFragment() {
+        FilterDialogFragment filterDialogFragment = new FilterDialogFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.filter_frame_layout, filterDialogFragment).commit();
     }
 
-    private void hideKeyBoard() {
-        InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-    }
+
+//    private void filter() {
+//        filteredMeals = new ArrayList<>();
+//        for (int i = 0; i < mealList.size(); i++) {
+//            for (int j = 0; j < selectedCategories.size(); j++) {
+//                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {
+//                    filteredMeals.add(mealList.get(i));
+//                }
+//            }
+//        }
+//        Log.d("FilteredMeals", Arrays.toString(filteredMeals.toArray()));
+//        if (!filteredMeals.isEmpty()) {
+//            mealAdapter.updateList(filteredMeals);
+//        }
+//    }
+
+//    private void hideKeyBoard() {
+//        InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+//    }
 
     @Override
     public void onSuccess(String data) {
