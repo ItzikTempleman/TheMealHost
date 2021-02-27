@@ -26,21 +26,11 @@ import java.util.List;
 
 public class FilterDialogFragment extends DialogFragment implements View.OnClickListener {
     private final List<String> selectedCategories = new ArrayList<>();
-    private List<Meal> filteredMeals, mealList;
+    private List<Meal> mealList;
     public MealAdapter mealAdapter;
     private Button filterBtn;
     public ChooseMealFragment chooseMealFragment = new ChooseMealFragment();
-    private final Category[] categories = {
-            new Category("Chicken"),
-            new Category("Beef"),
-            new Category("Fish"),
-            new Category("Lamb"),
-            new Category("Vegetarian"),
-            new Category("Pasta"),
-            new Category("Starter"),
-            new Category("Dessert"),
-            new Category("Side"),
-            new Category("Other")
+    private final Category[] categories = {new Category("Chicken"), new Category("Beef"), new Category("Fish"), new Category("Lamb"), new Category("Vegetarian"), new Category("Pasta"), new Category("Starter"), new Category("Dessert"), new Category("Side"), new Category("Other")
     };
 
     @Nullable
@@ -58,7 +48,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
 
     private void initView(View view) {
-        mealList = new ArrayList<>();
+        mealList = ChooseMealFragment.mealList;
         initCategories(view);
         filterBtn = view.findViewById(R.id.fragment_choose_meal_categories_filter_button);
         mealAdapter = new MealAdapter(requireContext(), chooseMealFragment);
@@ -80,7 +70,6 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         Button button = (Button) v;
         String currentButtonText = button.getText().toString();
 
-        // Handling different Button 'UI' text and requested Category text
         if (currentButtonText.equals("Fish")) currentButtonText = "Seafood";
         else if (currentButtonText.equals("Other")) currentButtonText = "Miscellaneous";
 
@@ -126,7 +115,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void filter() {
-        filteredMeals = new ArrayList<>();
+        List<Meal> filteredMeals = new ArrayList<>();
         for (int i = 0; i < mealList.size(); i++) {
             for (int j = 0; j < selectedCategories.size(); j++) {
                 if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {

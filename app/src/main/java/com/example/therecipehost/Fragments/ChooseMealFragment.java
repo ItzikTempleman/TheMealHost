@@ -52,31 +52,18 @@ import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
 
 
-public class ChooseMealFragment extends Fragment implements IResponse, View.OnClickListener {
+public class ChooseMealFragment extends Fragment implements IResponse {
     private EditText searchET;
     private MealAdapter mealAdapter;
     private SavedMealAdapter savedMealAdapter;
     private ProgressBar progressBar;
     public ImageView emptyStateIV;
-    private RecyclerView mealRV;
-    public static List<Meal> mealList, filteredMeals;
+    public static List<Meal> mealList;
     private TextView featuredTV;
     private SharedPreferences sharedPreferences;
-    private final Category[] categories = {
-            new Category("Chicken"),
-            new Category("Beef"),
-            new Category("Fish"),
-            new Category("Lamb"),
-            new Category("Vegetarian"),
-            new Category("Pasta"),
-            new Category("Starter"),
-            new Category("Dessert"),
-            new Category("Side"),
-            new Category("Other")
-    };
 
-    private final List<String> selectedCategories = new ArrayList<>();
-    private Button filterBtn, moveToFilterBtn;
+
+    private Button moveToFilterBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,47 +94,24 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     }
 
     private void initView(View view) {
-        //initCategories(view);
+
         sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         featuredTV = view.findViewById(R.id.featured_tv);
         searchET = view.findViewById(R.id.search_recipe_et);
-        filterBtn = view.findViewById(R.id.fragment_choose_meal_categories_filter_button);
         moveToFilterBtn = view.findViewById(R.id.move_to_filter);
-        mealRV = view.findViewById(R.id.choose_meal_rv);
+        RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
         progressBar = view.findViewById(R.id.loading_pb);
         emptyStateIV = view.findViewById(R.id.choose_meal_empty_state_image_view);
         savedMealAdapter = new SavedMealAdapter(getContext());
         mealAdapter = new MealAdapter(requireContext(), this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRV.setLayoutManager(linearLayoutManager);
         mealRV.setAdapter(mealAdapter);
         Utils.handleSwiping(mealRV);
     }
 
 
-//    private void initCategories(View view) {
-//        ConstraintLayout container = view.findViewById(R.id.fragment_choose_meal_categories_container);
-//        Flow flow = view.findViewById(R.id.fragment_choose_meal_categories_flow_view);
-//
-//        int[] buttonsIds = new int[10];
-//        for (int i = 0; i < 10; i++) {
-//            Button button = new Button(requireContext());
-//
-//            String currentCategoryTitle = categories[i].getText();
-//            button.setText(currentCategoryTitle);
-//
-//            categories[i].setId(i + 1);
-//            button.setId(categories[i].getId());
-//            button.setPadding(48, 0, 48, 0);
-//            button.setAllCaps(false);
-//            button.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.choose_meal_white));
-//            button.setOnClickListener(this);
-//
-//            container.addView(button);
-//            buttonsIds[i] = (button.getId());
-//        }
-//        flow.setReferencedIds(buttonsIds);
-//    }
+
 
 
     private void setListeners() {
@@ -171,19 +135,12 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
                 if (!s.toString().isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
                     featuredTV.setVisibility(View.GONE);
-                    //hideKeyBoard();
                     Utils.loadAsyncTask(s.toString(), ChooseMealFragment.this);
 
                 } else featuredTV.setVisibility(View.VISIBLE);
             }
         });
 
-//        filterBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                filter();
-//            }
-//        });
     }
 
     private void moveToFilterDialogFragment() {
@@ -192,25 +149,7 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
     }
 
 
-//    private void filter() {
-//        filteredMeals = new ArrayList<>();
-//        for (int i = 0; i < mealList.size(); i++) {
-//            for (int j = 0; j < selectedCategories.size(); j++) {
-//                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {
-//                    filteredMeals.add(mealList.get(i));
-//                }
-//            }
-//        }
-//        Log.d("FilteredMeals", Arrays.toString(filteredMeals.toArray()));
-//        if (!filteredMeals.isEmpty()) {
-//            mealAdapter.updateList(filteredMeals);
-//        }
-//    }
 
-//    private void hideKeyBoard() {
-//        InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-//    }
 
     @Override
     public void onSuccess(String data) {
@@ -313,29 +252,5 @@ public class ChooseMealFragment extends Fragment implements IResponse, View.OnCl
 
         } else savedMeal = new ArrayList<>();
         return savedMeal;
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        Button button = (Button) v;
-        String currentButtonText = button.getText().toString();
-
-        // Handling different Button 'UI' text and requested Category text
-        if (currentButtonText.equals("Fish")) currentButtonText = "Seafood";
-        else if (currentButtonText.equals("Other")) currentButtonText = "Miscellaneous";
-
-        if (!selectedCategories.contains(currentButtonText)) {
-            selectedCategories.add(currentButtonText);
-            button.setBackgroundResource(R.drawable.choose_meal_filled);
-            button.setTextColor(Color.WHITE);
-        } else {
-            selectedCategories.remove(currentButtonText);
-            button.setBackgroundResource(R.drawable.choose_meal_white);
-            button.setTextColor(Color.BLACK);
-        }
-
-        filterBtn.setEnabled(selectedCategories.size() > 0);
-        Log.d("SELECTED", Arrays.toString(selectedCategories.toArray()));
     }
 }
