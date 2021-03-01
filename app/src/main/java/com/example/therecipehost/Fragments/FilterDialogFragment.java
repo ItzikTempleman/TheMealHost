@@ -7,19 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.helper.widget.Flow;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-
 import com.example.therecipehost.Adapters.MealAdapter;
 import com.example.therecipehost.Models.Category;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,8 +27,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     public MealAdapter mealAdapter;
     private Button filterBtn;
     public ChooseMealFragment chooseMealFragment = new ChooseMealFragment();
-    private final Category[] categories = {new Category("Chicken"), new Category("Beef"), new Category("Fish"), new Category("Lamb"), new Category("Vegetarian"), new Category("Pasta"), new Category("Starter"), new Category("Dessert"), new Category("Side"), new Category("Other")
-    };
+    private final Category[] categories = {new Category("Chicken"), new Category("Beef"), new Category("Fish"), new Category("Lamb"), new Category("Vegetarian"), new Category("Pasta"), new Category("Starter"), new Category("Dessert"), new Category("Side"), new Category("Other")};
 
     @Nullable
     @Override
@@ -45,7 +41,6 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         initView(view);
         setListeners();
     }
-
 
     private void initView(View view) {
         mealList = ChooseMealFragment.mealList;
@@ -65,14 +60,10 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
     @Override
     public void onClick(View v) {
-
-
         Button button = (Button) v;
         String currentButtonText = button.getText().toString();
-
         if (currentButtonText.equals("Fish")) currentButtonText = "Seafood";
         else if (currentButtonText.equals("Other")) currentButtonText = "Miscellaneous";
-
         if (!selectedCategories.contains(currentButtonText)) {
             selectedCategories.add(currentButtonText);
             button.setBackgroundResource(R.drawable.choose_meal_filled);
@@ -82,32 +73,24 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
             button.setBackgroundResource(R.drawable.choose_meal_white);
             button.setTextColor(Color.BLACK);
         }
-
         filterBtn.setEnabled(selectedCategories.size() > 0);
-        Log.d("SELECTED", Arrays.toString(selectedCategories.toArray()));
-
     }
 
-
     private void initCategories(View view) {
-
         ConstraintLayout container = view.findViewById(R.id.fragment_choose_meal_categories_container);
         Flow flow = view.findViewById(R.id.fragment_choose_meal_categories_flow_view);
 
         int[] buttonsIds = new int[10];
         for (int i = 0; i < 10; i++) {
             Button button = new Button(requireContext());
-
             String currentCategoryTitle = categories[i].getText();
             button.setText(currentCategoryTitle);
-
             categories[i].setId(i + 1);
             button.setId(categories[i].getId());
             button.setPadding(48, 0, 48, 0);
             button.setAllCaps(false);
             button.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.choose_meal_white));
             button.setOnClickListener(this);
-
             container.addView(button);
             buttonsIds[i] = (button.getId());
         }

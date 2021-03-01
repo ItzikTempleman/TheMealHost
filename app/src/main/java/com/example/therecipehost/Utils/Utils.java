@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.therecipehost.Adapters.MealAdapter;
 import com.example.therecipehost.AsyncTasks.MealAsyncTask;
 import com.example.therecipehost.Fragments.FilterDialogFragment;
 import com.example.therecipehost.Fragments.RecipeDetailsFragment;
@@ -63,7 +64,7 @@ public class Utils {
             Bundle bundle = new Bundle();
             bundle.putParcelable(MEAL, meal);
             recipeDetailsFragment.setArguments(bundle);
-            changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.main_activity_frame_layout, recipeDetailsFragment, true);
+            changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.choose_meal_frame_layout, recipeDetailsFragment, true);
     }
 
 

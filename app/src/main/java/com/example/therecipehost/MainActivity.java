@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
         );
         viewPager2.setOffscreenPageLimit(1);
+
         tabLayoutMediator.attach();
     }
 

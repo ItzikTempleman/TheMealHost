@@ -33,8 +33,6 @@ public class RecipeDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        NestedScrollView scrollView = view.findViewById(R.id.nested_scroll_view);
-//        scrollView.requestDisallowInterceptTouchEvent(true);
 
 
         if (isMealInArguments()) {

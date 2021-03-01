@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -61,10 +62,8 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     public static List<Meal> mealList;
     private TextView featuredTV;
     private SharedPreferences sharedPreferences;
-
-
     private Button moveToFilterBtn;
-
+private FrameLayout filterLayout;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,11 +80,9 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initView(view);
         getAllMeals();
         setListeners();
-
     }
 
     private void getAllMeals() {
@@ -94,7 +91,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void initView(View view) {
-
         sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         featuredTV = view.findViewById(R.id.featured_tv);
         searchET = view.findViewById(R.id.search_recipe_et);
@@ -107,12 +103,9 @@ public class ChooseMealFragment extends Fragment implements IResponse {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRV.setLayoutManager(linearLayoutManager);
         mealRV.setAdapter(mealAdapter);
+        filterLayout=view.findViewById(R.id.filter_frame_layout);
         Utils.handleSwiping(mealRV);
     }
-
-
-
-
 
     private void setListeners() {
         moveToFilterBtn.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +114,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
                 moveToFilterDialogFragment();
             }
         });
+
         searchET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -145,11 +139,9 @@ public class ChooseMealFragment extends Fragment implements IResponse {
 
     private void moveToFilterDialogFragment() {
         FilterDialogFragment filterDialogFragment = new FilterDialogFragment();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.filter_frame_layout, filterDialogFragment).commit();
+        Utils.changeFragment(getActivity().getSupportFragmentManager(), R.id.filter_frame_layout, filterDialogFragment, true);
+        filterLayout.setVisibility(View.VISIBLE);
     }
-
-
-
 
     @Override
     public void onSuccess(String data) {
@@ -174,7 +166,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
             showEmptyState(false);
             updateRelevantMealsIfNeeded(mealList);
             mealAdapter.updateList(mealList);
-
         } catch (JSONException jsonException) {
             showEmptyState(true);
             jsonException.printStackTrace();
@@ -247,9 +238,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
 
         List<Meal> savedMeal;
         if (currentSavedRecipes != null) {
-            savedMeal = gson.fromJson(currentSavedRecipes, new TypeToken<List<Meal>>() {
-            }.getType());
-
+            savedMeal = gson.fromJson(currentSavedRecipes, new TypeToken<List<Meal>>() {}.getType());
         } else savedMeal = new ArrayList<>();
         return savedMeal;
     }

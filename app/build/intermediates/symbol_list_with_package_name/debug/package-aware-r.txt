@@ -1862,8 +1862,8 @@ id chip1
 id chip2
 id chip3
 id chip_group
-id choose_category_tv
 id choose_meal_empty_state_image_view
+id choose_meal_frame_layout
 id choose_meal_rv
 id chronometer
 id clear_text
@@ -1985,7 +1985,6 @@ id linear
 id listMode
 id list_item
 id loading_pb
-id main_activity_frame_layout
 id main_activity_tab_layout
 id masked
 id meal_list_item_image_card_view
