@@ -1,7 +1,7 @@
 package com.example.therecipehost.Fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,9 +20,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.helper.widget.Flow;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +27,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.therecipehost.Adapters.MealAdapter;
 import com.example.therecipehost.Adapters.SavedMealAdapter;
-import com.example.therecipehost.Models.Category;
 import com.example.therecipehost.Models.IResponse;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
@@ -63,7 +59,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     private TextView featuredTV;
     private SharedPreferences sharedPreferences;
     private Button moveToFilterBtn;
-private FrameLayout filterLayout;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +76,7 @@ private FrameLayout filterLayout;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         initView(view);
         getAllMeals();
         setListeners();
@@ -103,7 +100,6 @@ private FrameLayout filterLayout;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRV.setLayoutManager(linearLayoutManager);
         mealRV.setAdapter(mealAdapter);
-        filterLayout=view.findViewById(R.id.filter_frame_layout);
         Utils.handleSwiping(mealRV);
     }
 
@@ -139,8 +135,23 @@ private FrameLayout filterLayout;
 
     private void moveToFilterDialogFragment() {
         FilterDialogFragment filterDialogFragment = new FilterDialogFragment();
-        Utils.changeFragment(getActivity().getSupportFragmentManager(), R.id.filter_frame_layout, filterDialogFragment, true);
-        filterLayout.setVisibility(View.VISIBLE);
+        filterDialogFragment.setChooseMealFragmentRef(this);
+        filterDialogFragment.show(requireActivity().getSupportFragmentManager(), null);
+    }
+
+    public void filter(List<String> selectedCategories) {
+        List<Meal> filteredMeals = new ArrayList<>();
+        for (int i = 0; i < mealList.size(); i++) {
+            for (int j = 0; j < selectedCategories.size(); j++) {
+                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {
+                    filteredMeals.add(mealList.get(i));
+                }
+            }
+        }
+        Log.d("FilteredMeals", Arrays.toString(filteredMeals.toArray()));
+        if (!filteredMeals.isEmpty()) {
+            mealAdapter.updateList(filteredMeals);
+        }
     }
 
     @Override
@@ -174,18 +185,25 @@ private FrameLayout filterLayout;
     }
 
     private void updateRelevantMealsIfNeeded(List<Meal> mealList) {
-        List<Meal> savedMealList = getSavedMealList();
+        List<Meal> savedMealList = Utils.getSavedMealList(requireContext());
         if (!savedMealList.isEmpty()) {
 
             for (int i = 0; i < mealList.size(); i++) {
                 Meal currentMeal = mealList.get(i);
                 for (int j = 0; j < savedMealList.size(); j++) {
+                    Meal savedMeal = savedMealList.get(j);
                     if (savedMealList.get(j).getTitle().equals(currentMeal.getTitle())) {
                         mealList.remove(savedMealList.get(j));
-                        mealList.get(i).setLiked(true);
+                        mealList.get(i).setLiked(savedMeal.isLiked());
                     }
                 }
             }
+        }else clearAllLikedMeals();
+    }
+
+    private void clearAllLikedMeals(){
+        for (int i = 0; i < mealList.size(); i++) {
+            mealList.get(i).setLiked(false);
         }
     }
 
@@ -232,14 +250,10 @@ private FrameLayout filterLayout;
         savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
     }
 
-    private List<Meal> getSavedMealList() {
-        String currentSavedRecipes = sharedPreferences.getString(MEAL, null);
-        Gson gson = new Gson();
-
-        List<Meal> savedMeal;
-        if (currentSavedRecipes != null) {
-            savedMeal = gson.fromJson(currentSavedRecipes, new TypeToken<List<Meal>>() {}.getType());
-        } else savedMeal = new ArrayList<>();
-        return savedMeal;
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateRelevantMealsIfNeeded(mealList);
+        mealAdapter.updateList(mealList);
     }
 }

@@ -9,10 +9,19 @@ import com.example.therecipehost.Fragments.ChooseMealFragment;
 import com.example.therecipehost.Fragments.ProfileFragment;
 import com.example.therecipehost.Fragments.SavedFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FragmentViewPagerAdapter extends FragmentStateAdapter {
     public final ChooseMealFragment chooseMealFragment = new ChooseMealFragment();
     public final SavedFragment savedFragment = new SavedFragment();
     public final ProfileFragment profileFragment = new ProfileFragment();
+
+    private Fragment[] fragments = {
+            chooseMealFragment,
+            savedFragment,
+            profileFragment
+    };
 
     public FragmentViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -21,18 +30,11 @@ public class FragmentViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0:
-                return chooseMealFragment;
-            case 1:
-                return savedFragment;
-            default:
-                return profileFragment;
-        }
+        return fragments[position];
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return fragments.length;
     }
 }

@@ -98,7 +98,6 @@ public class SavedFragment extends Fragment {
 
     private void handleSnackBar(Meal deletedMeal) {
         Snackbar deleteSV = Snackbar.make(coordinatorLayout, "Recipe was removed from list", Snackbar.LENGTH_LONG);
-        tabLayout.setVisibility(View.GONE);
 
         deleteSV.setAction("retrieve item?", new View.OnClickListener() {
             @Override
@@ -107,14 +106,14 @@ public class SavedFragment extends Fragment {
             }
         });
         deleteSV.show();
-        Handler handler = new Handler();
+        /*Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 tabLayout.setVisibility(View.VISIBLE);
             }
-        }, 3000);
-        if (savedMealList.isEmpty()) Utils.toast(getContext(), "You have no saved or liked recipes at the moment");
+        }, 3000);*/
+        //if (savedMealList.isEmpty()) Utils.toast(getContext(), "You have no saved or liked recipes at the moment");
     }
 
     private void retrieve(Meal deletedMeal) {
@@ -129,7 +128,6 @@ public class SavedFragment extends Fragment {
     private void updateMealList() {
         savedMealList = Utils.getSavedMealList(requireContext());
     }
-
 
     @Override
     public void onResume() {

@@ -26,12 +26,14 @@ public class MainActivity extends AppCompatActivity {
     public void initView() {
         tabLayout = findViewById(R.id.main_activity_tab_layout);
         ViewPager2 viewPager2 = findViewById(R.id.view_pager);
+        // disable viewPager2 scrolling
+        viewPager2.setUserInputEnabled(false);
         viewPager2.setAdapter(new FragmentViewPagerAdapter(this));
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(
                 tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                switch (position) {
+                /*switch (position) {
                     case 0:
                         tab.setText(tabTitles[0]);
                         tab.setIcon(tabImages[0]);
@@ -44,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
                         tab.setText(tabTitles[2]);
                         tab.setIcon(tabImages[2]);
                         break;
-                }
+                }*/
+
+                tab.setText(tabTitles[position]);
+                tab.setIcon(tabImages[position]);
             }
         }
         );
