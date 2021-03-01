@@ -6,19 +6,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.helper.widget.Flow
-        android:layout_margin="4dp"
+        android:layout_margin="12dp"
         android:id="@+id/fragment_choose_meal_categories_flow_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:flow_horizontalAlign="start"
-        app:flow_horizontalGap="16dp"
+        app:flow_horizontalGap="12dp"
         app:flow_horizontalStyle="packed"
         app:flow_maxElementsWrap="3"
         app:flow_verticalGap="12dp"
         app:flow_wrapMode="chain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_marginTop="16dp"

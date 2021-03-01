@@ -1714,6 +1714,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable open_on_phone
+drawable pop_up_background
 drawable profile
 drawable progressbar_color
 drawable project_title_hebrew
