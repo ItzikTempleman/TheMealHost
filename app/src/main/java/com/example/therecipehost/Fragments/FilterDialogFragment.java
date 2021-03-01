@@ -1,11 +1,13 @@
 package com.example.therecipehost.Fragments;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,12 +24,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FilterDialogFragment extends DialogFragment implements View.OnClickListener {
+
     private final List<String> selectedCategories = new ArrayList<>();
     private List<Meal> mealList;
-    public MealAdapter mealAdapter;
     private Button filterBtn;
-    public ChooseMealFragment chooseMealFragment = new ChooseMealFragment();
+    public ChooseMealFragment chooseMealFragment;
     private final Category[] categories = {new Category("Chicken"), new Category("Beef"), new Category("Fish"), new Category("Lamb"), new Category("Vegetarian"), new Category("Pasta"), new Category("Starter"), new Category("Dessert"), new Category("Side"), new Category("Other")};
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
 
     @Nullable
     @Override
@@ -38,6 +46,8 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
         initView(view);
         setListeners();
     }
@@ -46,14 +56,17 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         mealList = ChooseMealFragment.mealList;
         initCategories(view);
         filterBtn = view.findViewById(R.id.fragment_choose_meal_categories_filter_button);
-        mealAdapter = new MealAdapter(requireContext(), chooseMealFragment);
     }
 
     private void setListeners() {
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filter();
+                if (chooseMealFragment != null) {
+                    // todo save selected categories in SharedPref
+                    chooseMealFragment.filter(selectedCategories);
+                }
+                dismiss();
             }
         });
     }
@@ -77,6 +90,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void initCategories(View view) {
+        // TODO: Load selected categories (if exist) - 3/1/21
         ConstraintLayout container = view.findViewById(R.id.fragment_choose_meal_categories_container);
         Flow flow = view.findViewById(R.id.fragment_choose_meal_categories_flow_view);
 
@@ -97,19 +111,8 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         flow.setReferencedIds(buttonsIds);
     }
 
-    private void filter() {
-        List<Meal> filteredMeals = new ArrayList<>();
-        for (int i = 0; i < mealList.size(); i++) {
-            for (int j = 0; j < selectedCategories.size(); j++) {
-                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {
-                    filteredMeals.add(mealList.get(i));
-                }
-            }
-        }
-        Log.d("FilteredMeals", Arrays.toString(filteredMeals.toArray()));
-        if (!filteredMeals.isEmpty()) {
-            mealAdapter.updateList(filteredMeals);
-        }
+    public void setChooseMealFragmentRef(ChooseMealFragment chooseMealFragment) {
+        this.chooseMealFragment = chooseMealFragment;
     }
 }
 

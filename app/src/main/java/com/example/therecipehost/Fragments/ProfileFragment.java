@@ -20,7 +20,7 @@ import static com.example.therecipehost.Constants.GlobalConstants.USER_NAME_KEY;
 
 
 public class ProfileFragment extends Fragment {
-    private TextView usernameTV;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,8 +34,8 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initView(View view) {
-        usernameTV=view.findViewById(R.id.username);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(USER_INFO_SHARED_PREFS, MODE_PRIVATE);
+        TextView usernameTV = view.findViewById(R.id.username);
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(USER_INFO_SHARED_PREFS, MODE_PRIVATE);
         String nameText = sharedPreferences.getString(USER_NAME_KEY, "");
         String correctUerName = nameText.substring(0, nameText.indexOf("@"));
         usernameTV.setText(correctUerName);

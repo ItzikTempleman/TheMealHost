@@ -11,6 +11,7 @@ anim abc_slide_out_bottom
 anim abc_slide_out_top
 anim abc_tooltip_enter
 anim abc_tooltip_exit
+anim blink
 anim btn_checkbox_to_checked_box_inner_merged_animation
 anim btn_checkbox_to_checked_box_outer_merged_animation
 anim btn_checkbox_to_checked_icon_null_animation
@@ -41,6 +42,8 @@ anim open_on_phone_animation_interpolator_1
 anim open_on_phone_arrow_animation
 anim open_on_phone_path_1_animation
 anim open_on_phone_path_2_animation
+anim slide_down
+anim slide_up
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -1926,7 +1929,6 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
-id filter_frame_layout
 id find_recipe_tv
 id fitToContents
 id fixed
@@ -2737,6 +2739,7 @@ style CardView
 style CardView_Dark
 style CardView_Light
 style ConfirmationActivity
+style DialogAnimation
 style EmptyTheme
 style MaterialAlertDialog_MaterialComponents
 style MaterialAlertDialog_MaterialComponents_Body_Text

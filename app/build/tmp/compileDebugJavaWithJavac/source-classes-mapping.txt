@@ -26,7 +26,6 @@ com/example/therecipehost/Fragments/ChooseMealFragment.java
  com.example.therecipehost.Fragments.ChooseMealFragment$3
  com.example.therecipehost.Fragments.ChooseMealFragment$4
  com.example.therecipehost.Fragments.ChooseMealFragment$5
- com.example.therecipehost.Fragments.ChooseMealFragment$6
 com/example/therecipehost/Fragments/ProfileFragment.java
  com.example.therecipehost.Fragments.ProfileFragment
 com/example/therecipehost/Adapters/FragmentViewPagerAdapter.java
@@ -35,7 +34,6 @@ com/example/therecipehost/Fragments/SavedFragment.java
  com.example.therecipehost.Fragments.SavedFragment
  com.example.therecipehost.Fragments.SavedFragment$1
  com.example.therecipehost.Fragments.SavedFragment$2
- com.example.therecipehost.Fragments.SavedFragment$3
 com/example/therecipehost/Adapters/MealAdapter.java
  com.example.therecipehost.Adapters.MealAdapter
  com.example.therecipehost.Adapters.MealAdapter$1

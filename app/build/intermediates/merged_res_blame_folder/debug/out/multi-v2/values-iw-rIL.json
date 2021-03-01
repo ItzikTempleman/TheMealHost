@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw-rIL/values-iw-rIL.xml",
+            "outputFile": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw-rIL/values-iw-rIL.xml",
             "map": [
                 {
-                    "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/values-iw-rIL/strings.xml",
+                    "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/values-iw-rIL/strings.xml",
                     "from": {
                         "startLines": "7,13,8,23,16,17,11,2,26,4,22,10,9,12,20,19,25,21,28,24,14,15,30,6,3,27,18,5,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
