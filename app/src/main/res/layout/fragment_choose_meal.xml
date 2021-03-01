@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -59,28 +60,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/featured_tv"
-                android:layout_width="0dp"
+            <ImageButton
+                android:layout_margin="16dp"
+                android:id="@+id/move_to_filter"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:text="@string/might_interest_you"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:background="@drawable/filter_list"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search_recipe_et" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/choose_meal_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/featured_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/move_to_filter" />
 
             <ImageView
                 android:id="@+id/choose_meal_empty_state_image_view"
@@ -92,23 +88,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/featured_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/search_recipe_et" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/move_to_filter"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="60dp"
-                android:background="@drawable/next_sign_in_btn"
-                android:text="@string/what_do_you_like"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/choose_meal_rv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

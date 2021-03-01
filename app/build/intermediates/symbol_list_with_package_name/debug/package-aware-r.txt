@@ -1673,6 +1673,8 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable english_title_recipe_host
+drawable filter_btn
+drawable filter_list
 drawable food_image
 drawable generic_confirmation
 drawable generic_confirmation_animation
@@ -1925,7 +1927,6 @@ id expand_activities_button
 id expanded_menu
 id fade
 id favorites_rv_saved
-id featured_tv
 id fill
 id fill_horizontal
 id fill_vertical

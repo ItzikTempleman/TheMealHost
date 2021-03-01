@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -56,9 +57,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     private ProgressBar progressBar;
     public ImageView emptyStateIV;
     public static List<Meal> mealList;
-    private TextView featuredTV;
-    private SharedPreferences sharedPreferences;
-    private Button moveToFilterBtn;
+    private ImageButton moveToFilterBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,8 +87,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void initView(View view) {
-        sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        featuredTV = view.findViewById(R.id.featured_tv);
+        SharedPreferences sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         searchET = view.findViewById(R.id.search_recipe_et);
         moveToFilterBtn = view.findViewById(R.id.move_to_filter);
         RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
@@ -124,10 +122,8 @@ public class ChooseMealFragment extends Fragment implements IResponse {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
-                    featuredTV.setVisibility(View.GONE);
                     Utils.loadAsyncTask(s.toString(), ChooseMealFragment.this);
-
-                } else featuredTV.setVisibility(View.VISIBLE);
+                }
             }
         });
 
