@@ -32,6 +32,10 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/fragment_saved.xml"
     },
     {
+        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_disconnect.png.flat",
+        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/disconnect.png"
+    },
+    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
     },

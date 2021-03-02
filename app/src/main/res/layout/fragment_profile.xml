@@ -21,11 +21,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:background="@drawable/bottom_line_ui"
                 android:id="@+id/account_title_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:background="@drawable/bottom_line_ui"
                 android:paddingTop="20dp"
                 android:paddingBottom="6dp"
                 android:text="@string/account"
@@ -36,18 +36,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_margin="6dp"
                 android:id="@+id/profile_iv"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_below="@id/account_title_tv"
+                android:layout_margin="6dp"
                 android:src="@drawable/rounded_image_border" />
 
             <TextView
-                android:layout_below="@+id/account_title_tv"
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/account_title_tv"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="26dp"
                 android:layout_toEndOf="@+id/profile_iv"
@@ -55,6 +55,16 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
+            <ImageButton
+                android:id="@+id/disconnect_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/disconnect"
+                android:layout_below="@+id/account_title_tv"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="10dp"
+                />
         </RelativeLayout>
 
 

@@ -143,7 +143,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
                 }
             }
         }
-        Log.d("FilteredMeals", Arrays.toString(filteredMeals.toArray()));
         if (!filteredMeals.isEmpty()) {
             mealAdapter.updateList(filteredMeals);
         }

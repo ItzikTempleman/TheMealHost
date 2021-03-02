@@ -1672,6 +1672,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable disconnect
 drawable english_title_recipe_host
 drawable filter
 drawable filter_btn
@@ -1907,6 +1908,7 @@ id direct
 id disableHome
 id disablePostScroll
 id disableScroll
+id disconnect_btn
 id dragDown
 id dragEnd
 id dragLeft

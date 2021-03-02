@@ -1,6 +1,7 @@
 package com.example.therecipehost.Fragments;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,9 +20,16 @@ import com.example.therecipehost.Adapters.MealAdapter;
 import com.example.therecipehost.Models.Category;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
+import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
 public class FilterDialogFragment extends DialogFragment implements View.OnClickListener {
 
@@ -58,37 +66,6 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         filterBtn = view.findViewById(R.id.fragment_choose_meal_categories_filter_button);
     }
 
-    private void setListeners() {
-        filterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (chooseMealFragment != null) {
-                    // todo save selected categories in SharedPref
-                    chooseMealFragment.filter(selectedCategories);
-                }
-                dismiss();
-            }
-        });
-    }
-
-    @Override
-    public void onClick(View v) {
-        Button button = (Button) v;
-        String currentButtonText = button.getText().toString();
-        if (currentButtonText.equals("Fish")) currentButtonText = "Seafood";
-        else if (currentButtonText.equals("Other")) currentButtonText = "Miscellaneous";
-        if (!selectedCategories.contains(currentButtonText)) {
-            selectedCategories.add(currentButtonText);
-            button.setBackgroundResource(R.drawable.choose_meal_filled);
-            button.setTextColor(Color.WHITE);
-        } else {
-            selectedCategories.remove(currentButtonText);
-            button.setBackgroundResource(R.drawable.choose_meal_white);
-            button.setTextColor(Color.BLACK);
-        }
-        filterBtn.setEnabled(selectedCategories.size() > 0);
-    }
-
     private void initCategories(View view) {
         // TODO: Load selected categories (if exist) - 3/1/21
         ConstraintLayout container = view.findViewById(R.id.fragment_choose_meal_categories_container);
@@ -113,6 +90,47 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
     public void setChooseMealFragmentRef(ChooseMealFragment chooseMealFragment) {
         this.chooseMealFragment = chooseMealFragment;
+    }
+    private void setListeners() {
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (chooseMealFragment != null) {
+                    chooseMealFragment.filter(selectedCategories);
+             //       saveFilterState();
+                }
+                dismiss();
+            }
+
+            private void saveFilterState() {
+                // todo save selected categories in SharedPref
+                SharedPreferences sharedPreferences= Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Gson gson = new Gson();
+
+                String updatedList = gson.toJson(mealList);
+                editor.putString(MEAL, updatedList);
+                editor.apply();
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        Button button = (Button) v;
+        String currentButtonText = button.getText().toString();
+        if (currentButtonText.equals("Fish")) currentButtonText = "Seafood";
+        else if (currentButtonText.equals("Other")) currentButtonText = "Miscellaneous";
+        if (!selectedCategories.contains(currentButtonText)) {
+            selectedCategories.add(currentButtonText);
+            button.setBackgroundResource(R.drawable.choose_meal_filled);
+            button.setTextColor(Color.WHITE);
+        } else {
+            selectedCategories.remove(currentButtonText);
+            button.setBackgroundResource(R.drawable.choose_meal_white);
+            button.setTextColor(Color.BLACK);
+        }
+        filterBtn.setEnabled(selectedCategories.size() > 0);
     }
 }
 

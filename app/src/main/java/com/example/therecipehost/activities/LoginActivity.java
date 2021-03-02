@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void confirmInput(View v) {
-        if (validateUserName() | validatePassword()) {
+        if (validateUserName() || validatePassword()) {
             isConfirmed = true;
             saveState();
             moveToMainActivity();

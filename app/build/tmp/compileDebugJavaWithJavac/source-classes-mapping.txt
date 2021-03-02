@@ -10,24 +10,19 @@ com/example/therecipehost/Utils/Utils.java
 com/example/therecipehost/MainActivity.java
  com.example.therecipehost.MainActivity
  com.example.therecipehost.MainActivity$1
-com/example/therecipehost/Fragments/FilterDialogFragment.java
- com.example.therecipehost.Fragments.FilterDialogFragment
- com.example.therecipehost.Fragments.FilterDialogFragment$1
+com/example/therecipehost/Constants/GlobalConstants.java
+ com.example.therecipehost.Constants.GlobalConstants
 com/example/therecipehost/Models/Meal.java
  com.example.therecipehost.Models.Meal
  com.example.therecipehost.Models.Meal$1
 com/example/therecipehost/SplashActivity.java
  com.example.therecipehost.SplashActivity
  com.example.therecipehost.SplashActivity$1
-com/example/therecipehost/Fragments/ChooseMealFragment.java
- com.example.therecipehost.Fragments.ChooseMealFragment
- com.example.therecipehost.Fragments.ChooseMealFragment$1
- com.example.therecipehost.Fragments.ChooseMealFragment$2
- com.example.therecipehost.Fragments.ChooseMealFragment$3
- com.example.therecipehost.Fragments.ChooseMealFragment$4
- com.example.therecipehost.Fragments.ChooseMealFragment$5
+com/example/therecipehost/BuildConfig.java
+ com.example.therecipehost.BuildConfig
 com/example/therecipehost/Fragments/ProfileFragment.java
  com.example.therecipehost.Fragments.ProfileFragment
+ com.example.therecipehost.Fragments.ProfileFragment$1
 com/example/therecipehost/Adapters/FragmentViewPagerAdapter.java
  com.example.therecipehost.Adapters.FragmentViewPagerAdapter
 com/example/therecipehost/Fragments/SavedFragment.java
@@ -49,7 +44,13 @@ com/example/therecipehost/AsyncTasks/MealAsyncTask.java
  com.example.therecipehost.AsyncTasks.MealAsyncTask
 com/example/therecipehost/Models/Category.java
  com.example.therecipehost.Models.Category
-com/example/therecipehost/BuildConfig.java
- com.example.therecipehost.BuildConfig
-com/example/therecipehost/Constants/GlobalConstants.java
- com.example.therecipehost.Constants.GlobalConstants
+com/example/therecipehost/Fragments/FilterDialogFragment.java
+ com.example.therecipehost.Fragments.FilterDialogFragment
+ com.example.therecipehost.Fragments.FilterDialogFragment$1
+com/example/therecipehost/Fragments/ChooseMealFragment.java
+ com.example.therecipehost.Fragments.ChooseMealFragment
+ com.example.therecipehost.Fragments.ChooseMealFragment$1
+ com.example.therecipehost.Fragments.ChooseMealFragment$2
+ com.example.therecipehost.Fragments.ChooseMealFragment$3
+ com.example.therecipehost.Fragments.ChooseMealFragment$4
+ com.example.therecipehost.Fragments.ChooseMealFragment$5

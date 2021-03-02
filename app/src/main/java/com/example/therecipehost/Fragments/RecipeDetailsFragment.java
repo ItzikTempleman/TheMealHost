@@ -44,7 +44,6 @@ public class RecipeDetailsFragment extends Fragment {
     private boolean isMealInArguments() {
         Bundle arguments = getArguments();
         if (arguments != null) {
-            // we have something inside our bundle
             meal = arguments.getParcelable(MEAL);
             return meal != null;
         }
