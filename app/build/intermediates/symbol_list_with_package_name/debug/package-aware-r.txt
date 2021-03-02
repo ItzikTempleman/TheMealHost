@@ -1673,8 +1673,8 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable english_title_recipe_host
+drawable filter
 drawable filter_btn
-drawable filter_list
 drawable food_image
 drawable generic_confirmation
 drawable generic_confirmation_animation

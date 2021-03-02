@@ -63,9 +63,9 @@
             <ImageButton
                 android:layout_margin="16dp"
                 android:id="@+id/move_to_filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/filter_list"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/filter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search_recipe_et" />
 

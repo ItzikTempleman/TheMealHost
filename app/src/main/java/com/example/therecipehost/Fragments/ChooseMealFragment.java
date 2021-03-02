@@ -87,7 +87,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void initView(View view) {
-        SharedPreferences sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         searchET = view.findViewById(R.id.search_recipe_et);
         moveToFilterBtn = view.findViewById(R.id.move_to_filter);
         RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);

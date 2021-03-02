@@ -84,6 +84,10 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/meal_item_view.xml"
     },
     {
+        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_filter.webp.flat",
+        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/filter.webp"
+    },
+    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
     },
@@ -126,10 +130,6 @@
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
-    },
-    {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_filter_list.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/filter_list.xml"
     },
     {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_fragment_choose_meal.xml.flat",
