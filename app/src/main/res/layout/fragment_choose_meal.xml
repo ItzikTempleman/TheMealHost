@@ -61,10 +61,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:layout_margin="16dp"
                 android:id="@+id/move_to_filter"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_margin="16dp"
                 android:background="@drawable/filter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search_recipe_et" />
@@ -90,6 +90,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search_recipe_et" />
 
+            <TextView
+                android:id="@+id/previously_searched_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:paddingTop="5dp"
+                android:text="@string/previously_searched"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choose_meal_rv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="20dp"
+                android:id="@+id/history_of_recipe_rv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/previously_searched_tv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

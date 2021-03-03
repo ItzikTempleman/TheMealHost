@@ -1,6 +1,7 @@
 package com.example.therecipehost.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.therecipehost.Fragments.ChooseMealFragment;
-import com.example.therecipehost.Fragments.SavedFragment;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
 import com.example.therecipehost.Utils.Utils;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
+import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 
     private final List<Meal> mealList = new ArrayList<>();
+    private final List<Meal> historySavedList = new ArrayList<>();
     private final Context context;
     private final ChooseMealFragment chooseMealFragment;
 
@@ -59,10 +66,15 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Utils.moveToDetailsFragment(meal, context);
-                //chooseMealFragment.getView().setVisibility(View.GONE);
+                meal.setWasSearched(true);
+                if (meal.isWasSearched()) {
+                    historySavedList.add(meal);
+                    saveHistoryState();
+                }
             }
-        });  //chooseMealFragment.getView().setVisibility(View.VISIBLE);
+        });
     }
+
 
     private void handleLikedState(ViewHolder holder, boolean getLiked) {
         holder.addToListIV.setImageDrawable(context.getResources().getDrawable(getLiked ? R.drawable.added_to_favorites : R.drawable.add_to_favorites));
@@ -92,4 +104,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
             addToListIV = itemView.findViewById(R.id.add_to_favorites_btn);
         }
     }
+
+    private void saveHistoryState() {
+        SharedPreferences sharedPreferences = Objects.requireNonNull(context.getSharedPreferences(SHARED_PREFS, MODE_PRIVATE));
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String savedHistory = gson.toJson(historySavedList);
+        editor.putString(HISTORY, savedHistory);
+        editor.apply();
+    }
 }
+

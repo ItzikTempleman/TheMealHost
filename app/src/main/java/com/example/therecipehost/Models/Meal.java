@@ -16,7 +16,7 @@ import java.util.List;
 public class Meal implements Parcelable {
     private String title, nationality, category, instructions, thumbPath, id;
     private List<String> ingredients, amountOfEach;
-    private boolean isLiked;
+    private boolean isLiked, wasSearched;
 
     public Meal(String title, String nationality, String category, String instructions, String thumbPath, String id) {
         this.title = title;
@@ -100,8 +100,16 @@ public class Meal implements Parcelable {
         return isLiked;
     }
 
+    public boolean isWasSearched() {
+        return wasSearched;
+    }
+
     public void setLiked(Boolean liked) {
         isLiked = liked;
+    }
+
+    public void setWasSearched(boolean wasSearched) {
+        this.wasSearched = wasSearched;
     }
 
     public void initAmounts(JSONObject amountObj) {

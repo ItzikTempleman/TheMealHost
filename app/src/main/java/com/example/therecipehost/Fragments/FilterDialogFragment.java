@@ -1,6 +1,5 @@
 package com.example.therecipehost.Fragments;
 
-import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,27 +7,28 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.helper.widget.Flow;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-import com.example.therecipehost.Adapters.MealAdapter;
+
 import com.example.therecipehost.Models.Category;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
+import static com.example.therecipehost.Constants.GlobalConstants.FILTERED_CATEGORY;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
 public class FilterDialogFragment extends DialogFragment implements View.OnClickListener {
@@ -38,6 +38,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     private Button filterBtn;
     public ChooseMealFragment chooseMealFragment;
     private final Category[] categories = {new Category("Chicken"), new Category("Beef"), new Category("Fish"), new Category("Lamb"), new Category("Vegetarian"), new Category("Pasta"), new Category("Starter"), new Category("Dessert"), new Category("Side"), new Category("Other")};
+
 
     @Override
     public void onStart() {
@@ -64,7 +65,9 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         mealList = ChooseMealFragment.mealList;
         initCategories(view);
         filterBtn = view.findViewById(R.id.fragment_choose_meal_categories_filter_button);
+        //loadFilteredCategories();
     }
+
 
     private void initCategories(View view) {
         // TODO: Load selected categories (if exist) - 3/1/21
@@ -91,25 +94,24 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     public void setChooseMealFragmentRef(ChooseMealFragment chooseMealFragment) {
         this.chooseMealFragment = chooseMealFragment;
     }
+
     private void setListeners() {
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (chooseMealFragment != null) {
                     chooseMealFragment.filter(selectedCategories);
-             //       saveFilterState();
+                    saveFilterState();
                 }
                 dismiss();
             }
 
             private void saveFilterState() {
-                // todo save selected categories in SharedPref
-                SharedPreferences sharedPreferences= Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 Gson gson = new Gson();
-
-                String updatedList = gson.toJson(mealList);
-                editor.putString(MEAL, updatedList);
+                String filteredList = gson.toJson(selectedCategories);
+                editor.putString(FILTERED_CATEGORY, filteredList);
                 editor.apply();
             }
         });
@@ -131,6 +133,20 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
             button.setTextColor(Color.BLACK);
         }
         filterBtn.setEnabled(selectedCategories.size() > 0);
+    }
+
+
+    private List<Meal> loadFilteredCategories() {
+        List<Meal> savedFilteredList = new ArrayList<>();
+        SharedPreferences sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(FILTERED_CATEGORY, null);
+        if (json != null) {
+            Type type = new TypeToken<List<Meal>>() {
+            }.getType();
+            savedFilteredList = gson.fromJson(json, type);
+        }
+        return savedFilteredList;
     }
 }
 

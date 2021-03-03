@@ -1954,6 +1954,8 @@ id grouping
 id groups
 id height
 id hideable
+id history_iv
+id history_of_recipe_rv
 id home
 id homeAsUp
 id honorRequest
@@ -2060,6 +2062,7 @@ id percent
 id pin
 id position
 id postLayout
+id previously_searched_tv
 id profile_iv
 id progress_circular
 id progress_horizontal
@@ -2317,6 +2320,7 @@ layout fragment_choose_meal
 layout fragment_profile
 layout fragment_recipe_details
 layout fragment_saved
+layout history_item_view
 layout meal_item_view
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -2502,6 +2506,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string previously_searched
 string prompt_email
 string prompt_password
 string search
