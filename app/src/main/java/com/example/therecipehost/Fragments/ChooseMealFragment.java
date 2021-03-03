@@ -53,7 +53,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     public ImageView emptyStateIV;
     public static List<Meal> mealList;
     private ImageButton moveToFilterBtn;
-    private RecyclerView historyRV;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,8 +70,8 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getHistory();
         initView(view);
+        initHistory(view);
         getAllMeals();
         setListeners();
     }
@@ -86,27 +85,25 @@ public class ChooseMealFragment extends Fragment implements IResponse {
         searchET = view.findViewById(R.id.search_recipe_et);
         moveToFilterBtn = view.findViewById(R.id.move_to_filter);
         RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
-
         progressBar = view.findViewById(R.id.loading_pb);
         emptyStateIV = view.findViewById(R.id.choose_meal_empty_state_image_view);
         savedMealAdapter = new SavedMealAdapter(getContext());
         mealAdapter = new MealAdapter(requireContext(), this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRV.setLayoutManager(linearLayoutManager);
-
         mealRV.setAdapter(mealAdapter);
         Utils.handleSwiping(mealRV);
 
-        initHistory(view);
+
     }
 
     private void initHistory(View view) {
+        getHistory();
         HistoryAdapter historyAdapter = new HistoryAdapter(getHistory(), this);
         LinearLayoutManager historyLayout = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        historyRV = view.findViewById(R.id.history_of_recipe_rv);
+        RecyclerView historyRV = view.findViewById(R.id.history_of_recipe_rv);
         historyRV.setLayoutManager(historyLayout);
         historyRV.setAdapter(historyAdapter);
-
         historyAdapter.notifyDataSetChanged();
     }
 
