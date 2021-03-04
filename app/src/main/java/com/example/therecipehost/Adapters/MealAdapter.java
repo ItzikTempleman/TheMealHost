@@ -69,7 +69,8 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
                 meal.setWasSearched(true);
                 if (meal.isWasSearched()) {
                     historySavedList.add(meal);
-                    saveHistoryState();
+                    Utils.saveHistoryState(context, meal);
+                    chooseMealFragment.handleHistory(meal);
                 }
             }
         });
@@ -105,13 +106,5 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
         }
     }
 
-    private void saveHistoryState() {
-        SharedPreferences sharedPreferences = Objects.requireNonNull(context.getSharedPreferences(SHARED_PREFS, MODE_PRIVATE));
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String savedHistory = gson.toJson(historySavedList);
-        editor.putString(HISTORY, savedHistory);
-        editor.apply();
-    }
 }
 

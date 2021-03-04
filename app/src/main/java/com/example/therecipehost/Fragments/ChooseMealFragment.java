@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
@@ -53,6 +54,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     public static List<Meal> mealList;
     private ImageButton moveToFilterBtn;
     private HistoryAdapter historyAdapter;
+    private List<Meal> savedHistoryList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,11 +72,12 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initHistory(view);
-        loadHistory();
         initView(view);
         getAllMeals();
         setListeners();
+
+        initHistory(view);
+        loadHistory();
     }
 
     private void getAllMeals() {
@@ -105,21 +108,21 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void loadHistory() {
-        SharedPreferences sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        String json = sharedPreferences.getString(HISTORY, null);
-        List<Meal> savedHistoryList = new ArrayList<>();
-        if (json != null) {
-            Gson gson = new Gson();
-            Type type = new TypeToken<List<Meal>>() {}.getType();
-            List<Meal> historyList = gson.fromJson(json, type);
-            if (!historyList.isEmpty()) {
-                savedHistoryList = historyList;
-            }
-        }
-        historyAdapter.updateList(savedHistoryList);
+        if (!Utils.getHistory(getContext()).isEmpty()) {
+            savedHistoryList = Utils.getHistory(getContext());
+
+            historyAdapter.updateList(savedHistoryList);
+        } else historyAdapter.updateList(new ArrayList<>());
     }
 
+    public void handleHistory(Meal meal) {
+        if (meal.isWasSearched()) saveToHistory(meal);
+    }
 
+    private void saveToHistory(Meal meal) {
+        Utils.saveHistoryState(requireContext(), meal);
+        historyAdapter.updateList(Utils.getHistory(requireContext()));
+    }
 
     private void setListeners() {
         moveToFilterBtn.setOnClickListener(new View.OnClickListener() {

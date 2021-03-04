@@ -54,12 +54,6 @@ public class SavedFragment extends Fragment {
         getSavedList();
     }
 
-    public void getSavedList() {
-        if (!Utils.getSavedMealList(getContext()).isEmpty()) {
-            updateMealList();
-            savedMealAdapter.updateProducts(savedMealList);
-        }else savedMealAdapter.updateProducts(new ArrayList<>());
-    }
 
     private void initView(View view) {
         coordinatorLayout = view.findViewById(R.id.coordinator_layout);
@@ -71,7 +65,12 @@ public class SavedFragment extends Fragment {
         handleSwiping();
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(likedRV);
     }
-
+    public void getSavedList() {
+        if (!Utils.getSavedMealList(getContext()).isEmpty()) {
+            updateMealList();
+            savedMealAdapter.updateProducts(savedMealList);
+        }else savedMealAdapter.updateProducts(new ArrayList<>());
+    }
     public void handleSwiping() {
         itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
@@ -106,14 +105,6 @@ public class SavedFragment extends Fragment {
             }
         });
         deleteSV.show();
-        /*Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                tabLayout.setVisibility(View.VISIBLE);
-            }
-        }, 3000);*/
-        //if (savedMealList.isEmpty()) Utils.toast(getContext(), "You have no saved or liked recipes at the moment");
     }
 
     private void retrieve(Meal deletedMeal) {

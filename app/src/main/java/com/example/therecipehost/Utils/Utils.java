@@ -1,12 +1,10 @@
 package com.example.therecipehost.Utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -16,16 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.therecipehost.Adapters.MealAdapter;
 import com.example.therecipehost.AsyncTasks.MealAsyncTask;
-import com.example.therecipehost.Constants.GlobalConstants;
-import com.example.therecipehost.Fragments.FilterDialogFragment;
 import com.example.therecipehost.Fragments.RecipeDetailsFragment;
 import com.example.therecipehost.MainActivity;
 import com.example.therecipehost.Models.IResponse;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
-import com.example.therecipehost.activities.LoginActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,11 +29,9 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
-import static com.example.therecipehost.Constants.GlobalConstants.PASSWORD_KEY;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
-import static com.example.therecipehost.Constants.GlobalConstants.USER_NAME_KEY;
-import static com.example.therecipehost.Constants.GlobalConstants.isConfirmed;
 
 public class Utils {
 
@@ -66,13 +58,12 @@ public class Utils {
     }
 
     public static void moveToDetailsFragment(Meal meal, Context context) {
-            RecipeDetailsFragment recipeDetailsFragment = new RecipeDetailsFragment();
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(MEAL, meal);
-            recipeDetailsFragment.setArguments(bundle);
-            changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.choose_meal_frame_layout, recipeDetailsFragment, true);
+        RecipeDetailsFragment recipeDetailsFragment = new RecipeDetailsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(MEAL, meal);
+        recipeDetailsFragment.setArguments(bundle);
+        changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.choose_meal_frame_layout, recipeDetailsFragment, true);
     }
-
 
     public static List<Meal> getSavedMealList(Context context) {
         List<Meal> savedMealList = new ArrayList<>();
@@ -125,7 +116,6 @@ public class Utils {
         return index;
     }
 
-
     public static void loadAsyncTask(String searchKey, IResponse iResponse) {
         MealAsyncTask mealAsyncTask = new MealAsyncTask(searchKey);
         mealAsyncTask.setIResponse(iResponse);
@@ -157,4 +147,29 @@ public class Utils {
         });
     }
 
+    public static List<Meal> getHistory(Context context) {
+        List<Meal> savedHistoryList = new ArrayList<>();
+        SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(HISTORY, null);
+        if (json != null) {
+            Type type = new TypeToken<List<Meal>>() {
+            }.getType();
+            savedHistoryList = gson.fromJson(json, type);
+        }
+        return savedHistoryList;
+    }
+
+    public static void saveHistoryState(Context context, Meal meal) {
+        SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+
+        List<Meal> savedHistoryMeal = getSavedMealList(context);
+        savedHistoryMeal.add(meal);
+
+        String updatedList = gson.toJson(savedHistoryMeal);
+        editor.putString(HISTORY, updatedList);
+        editor.apply();
+    }
 }
