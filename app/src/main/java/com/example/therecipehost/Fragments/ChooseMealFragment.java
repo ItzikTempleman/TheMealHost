@@ -1,5 +1,6 @@
 package com.example.therecipehost.Fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,10 +41,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static android.content.Context.MODE_PRIVATE;
 import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
-
 
 public class ChooseMealFragment extends Fragment implements IResponse {
     private EditText searchET;
@@ -53,6 +52,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     public ImageView emptyStateIV;
     public static List<Meal> mealList;
     private ImageButton moveToFilterBtn;
+    private HistoryAdapter historyAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,8 +70,9 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(view);
         initHistory(view);
+        loadHistory();
+        initView(view);
         getAllMeals();
         setListeners();
     }
@@ -93,181 +94,181 @@ public class ChooseMealFragment extends Fragment implements IResponse {
         mealRV.setLayoutManager(linearLayoutManager);
         mealRV.setAdapter(mealAdapter);
         Utils.handleSwiping(mealRV);
-
-
     }
 
     private void initHistory(View view) {
-        getHistory();
-        HistoryAdapter historyAdapter = new HistoryAdapter(getHistory(), this);
+        historyAdapter = new HistoryAdapter(getContext());
         LinearLayoutManager historyLayout = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         RecyclerView historyRV = view.findViewById(R.id.history_of_recipe_rv);
         historyRV.setLayoutManager(historyLayout);
         historyRV.setAdapter(historyAdapter);
-        historyAdapter.notifyDataSetChanged();
     }
 
-    private List<Meal> getHistory() {
-        List<Meal> savedHistoryList = new ArrayList<>();
-        SharedPreferences sharedPreferences = Objects.requireNonNull(getActivity()).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        Gson gson = new Gson();
+    private void loadHistory() {
+        SharedPreferences sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String json = sharedPreferences.getString(HISTORY, null);
+        List<Meal> savedHistoryList = new ArrayList<>();
         if (json != null) {
-            Type type = new TypeToken<List<Meal>>() {
-            }.getType();
-            savedHistoryList = gson.fromJson(json, type);
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<Meal>>() {}.getType();
+            List<Meal> historyList = gson.fromJson(json, type);
+            if (!historyList.isEmpty()) {
+                savedHistoryList = historyList;
+            }
         }
-        return savedHistoryList;
+        historyAdapter.updateList(savedHistoryList);
     }
 
-        private void setListeners () {
-            moveToFilterBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    moveToFilterDialogFragment();
-                }
-            });
 
-            searchET.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                }
+    private void setListeners() {
+        moveToFilterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToFilterDialogFragment();
+            }
+        });
 
-                @Override
-                public void afterTextChanged(Editable s) {
-                    if (!s.toString().isEmpty()) {
-                        progressBar.setVisibility(View.VISIBLE);
-                        Utils.loadAsyncTask(s.toString(), ChooseMealFragment.this);
-                    }
-                }
-            });
+        searchET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-        }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
-        private void moveToFilterDialogFragment () {
-            FilterDialogFragment filterDialogFragment = new FilterDialogFragment();
-            filterDialogFragment.setChooseMealFragmentRef(this);
-            filterDialogFragment.show(requireActivity().getSupportFragmentManager(), null);
-        }
-
-        public void filter (List < String > selectedCategories) {
-            List<Meal> filteredMeals = new ArrayList<>();
-            for (int i = 0; i < mealList.size(); i++) {
-                for (int j = 0; j < selectedCategories.size(); j++) {
-                    if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {
-                        filteredMeals.add(mealList.get(i));
-                    }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty()) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    Utils.loadAsyncTask(s.toString(), ChooseMealFragment.this);
                 }
             }
-            if (!filteredMeals.isEmpty()) {
-                mealAdapter.updateList(filteredMeals);
+        });
+
+    }
+
+    private void moveToFilterDialogFragment() {
+        FilterDialogFragment filterDialogFragment = new FilterDialogFragment();
+        filterDialogFragment.setChooseMealFragmentRef(this);
+        filterDialogFragment.show(requireActivity().getSupportFragmentManager(), null);
+    }
+
+    public void filter(List<String> selectedCategories) {
+        List<Meal> filteredMeals = new ArrayList<>();
+        for (int i = 0; i < mealList.size(); i++) {
+            for (int j = 0; j < selectedCategories.size(); j++) {
+                if (mealList.get(i).getCategory().equals(selectedCategories.get(j))) {
+                    filteredMeals.add(mealList.get(i));
+                }
             }
         }
+        if (!filteredMeals.isEmpty()) {
+            mealAdapter.updateList(filteredMeals);
+        }
+    }
 
-        @Override
-        public void onSuccess (String data){
-            progressBar.setVisibility(View.VISIBLE);
-            try {
-                mealList = new ArrayList<>();
-                JSONObject jsonObject = new JSONObject(data);
-                JSONArray jsonArray = jsonObject.getJSONArray("meals");
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    String title = obj.getString("strMeal");
-                    String nationality = obj.getString("strArea");
-                    String instructions = obj.getString("strInstructions");
-                    String category = obj.getString("strCategory");
-                    String thumbImage = obj.getString("strMealThumb");
-                    String id = obj.getString("idMeal");
-                    Meal meal = new Meal(title, nationality, category, instructions, thumbImage, id);
-                    meal.initIngredients(obj);
-                    meal.initAmounts(obj);
-                    mealList.add(meal);
-                }
-                showEmptyState(false);
-                updateRelevantMealsIfNeeded(mealList);
-                mealAdapter.updateList(mealList);
-            } catch (JSONException jsonException) {
-                showEmptyState(true);
-                jsonException.printStackTrace();
-                onError(jsonException.getMessage());
+    @Override
+    public void onSuccess(String data) {
+        progressBar.setVisibility(View.VISIBLE);
+        try {
+            mealList = new ArrayList<>();
+            JSONObject jsonObject = new JSONObject(data);
+            JSONArray jsonArray = jsonObject.getJSONArray("meals");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
+                String title = obj.getString("strMeal");
+                String nationality = obj.getString("strArea");
+                String instructions = obj.getString("strInstructions");
+                String category = obj.getString("strCategory");
+                String thumbImage = obj.getString("strMealThumb");
+                String id = obj.getString("idMeal");
+                Meal meal = new Meal(title, nationality, category, instructions, thumbImage, id);
+                meal.initIngredients(obj);
+                meal.initAmounts(obj);
+                mealList.add(meal);
             }
-        }
-
-        private void updateRelevantMealsIfNeeded (List < Meal > mealList) {
-            List<Meal> savedMealList = Utils.getSavedMealList(requireContext());
-            if (!savedMealList.isEmpty()) {
-
-                for (int i = 0; i < mealList.size(); i++) {
-                    Meal currentMeal = mealList.get(i);
-                    for (int j = 0; j < savedMealList.size(); j++) {
-                        Meal savedMeal = savedMealList.get(j);
-                        if (savedMealList.get(j).getTitle().equals(currentMeal.getTitle())) {
-                            mealList.remove(savedMealList.get(j));
-                            mealList.get(i).setLiked(savedMeal.isLiked());
-                        }
-                    }
-                }
-            } else clearAllLikedMeals();
-        }
-
-        private void clearAllLikedMeals () {
-            for (int i = 0; i < mealList.size(); i++) {
-                mealList.get(i).setLiked(false);
-            }
-        }
-
-        private void showEmptyState ( boolean show){
-            emptyStateIV.post(new Runnable() {
-                @Override
-                public void run() {
-                    emptyStateIV.setVisibility(show ? View.VISIBLE : View.GONE);
-                    Glide.with(ChooseMealFragment.this).load("https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png").into(emptyStateIV);
-                }
-            });
-        }
-
-        @Override
-        public void onLoading ( boolean isLoading){
-            progressBar.post(new Runnable() {
-                @Override
-                public void run() {
-                    progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-                }
-            });
-        }
-
-        @Override
-        public void onError (String error){
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    mealAdapter.updateList(new ArrayList<>());
-                    showEmptyState(true);
-                    progressBar.setVisibility(View.GONE);
-                    Utils.toast(getContext(), error);
-                }
-            });
-        }
-
-        public void handleRecipe (Meal meal){
-            if (meal.isLiked()) saveRecipe(meal);
-            else Utils.remove(requireContext(), meal);
-        }
-
-        private void saveRecipe (Meal meal){
-            Utils.saveRecipe(requireContext(), meal);
-            savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
-        }
-
-        @Override
-        public void onResume () {
-            super.onResume();
+            showEmptyState(false);
             updateRelevantMealsIfNeeded(mealList);
             mealAdapter.updateList(mealList);
+        } catch (JSONException jsonException) {
+            showEmptyState(true);
+            jsonException.printStackTrace();
+            onError(jsonException.getMessage());
         }
     }
+
+    private void updateRelevantMealsIfNeeded(List<Meal> mealList) {
+        List<Meal> savedMealList = Utils.getSavedMealList(requireContext());
+        if (!savedMealList.isEmpty()) {
+
+            for (int i = 0; i < mealList.size(); i++) {
+                Meal currentMeal = mealList.get(i);
+                for (int j = 0; j < savedMealList.size(); j++) {
+                    Meal savedMeal = savedMealList.get(j);
+                    if (savedMealList.get(j).getTitle().equals(currentMeal.getTitle())) {
+                        mealList.remove(savedMealList.get(j));
+                        mealList.get(i).setLiked(savedMeal.isLiked());
+                    }
+                }
+            }
+        } else clearAllLikedMeals();
+    }
+
+    private void clearAllLikedMeals() {
+        for (int i = 0; i < mealList.size(); i++) {
+            mealList.get(i).setLiked(false);
+        }
+    }
+
+    private void showEmptyState(boolean show) {
+        emptyStateIV.post(new Runnable() {
+            @Override
+            public void run() {
+                emptyStateIV.setVisibility(show ? View.VISIBLE : View.GONE);
+                Glide.with(ChooseMealFragment.this).load("https://i.pinimg.com/originals/88/36/65/8836650a57e0c941b4ccdc8a19dee887.png").into(emptyStateIV);
+            }
+        });
+    }
+
+    @Override
+    public void onLoading(boolean isLoading) {
+        progressBar.post(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+            }
+        });
+    }
+
+    @Override
+    public void onError(String error) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                mealAdapter.updateList(new ArrayList<>());
+                showEmptyState(true);
+                progressBar.setVisibility(View.GONE);
+                Utils.toast(getContext(), error);
+            }
+        });
+    }
+
+    public void handleRecipe(Meal meal) {
+        if (meal.isLiked()) saveRecipe(meal);
+        else Utils.remove(requireContext(), meal);
+    }
+
+    private void saveRecipe(Meal meal) {
+        Utils.saveRecipe(requireContext(), meal);
+        savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateRelevantMealsIfNeeded(mealList);
+        mealAdapter.updateList(mealList);
+    }
+}

@@ -1,5 +1,6 @@
 package com.example.therecipehost.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,18 +9,19 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.therecipehost.Fragments.ChooseMealFragment;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
 import com.example.therecipehost.Utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
-    private List<Meal> previouslySearchedRecipeList = ChooseMealFragment.mealList;
+    public List<Meal> previouslySearchedRecipeList = new ArrayList<>();
+    private final Context context;
 
-    public HistoryAdapter(List<Meal> previouslySearchedRecipeList, ChooseMealFragment chooseMealFragment) {
-        this.previouslySearchedRecipeList = previouslySearchedRecipeList;
+    public HistoryAdapter(Context context) {
+        this.context=context;
     }
 
     @NonNull
@@ -47,5 +49,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             super(itemView);
             historyIV = itemView.findViewById(R.id.history_iv);
         }
+    }
+
+    public void updateList(List<Meal> newHistoryList) {
+        previouslySearchedRecipeList.clear();
+        previouslySearchedRecipeList.addAll(newHistoryList);
+        notifyDataSetChanged();
     }
 }

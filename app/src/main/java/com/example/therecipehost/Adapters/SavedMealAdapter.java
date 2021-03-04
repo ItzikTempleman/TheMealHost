@@ -36,7 +36,7 @@ public class SavedMealAdapter extends RecyclerView.Adapter<SavedMealAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull SavedMealAdapter.ViewHolder holder, int position) {
-        Log.d("POSITION" , String.valueOf(position));
+
         final Meal meal = meals.get(position);
         Utils.loadImage(meal.getThumbPath(), holder.imageInSaved);
         holder.titleInSaved.setText(meal.getTitle());
