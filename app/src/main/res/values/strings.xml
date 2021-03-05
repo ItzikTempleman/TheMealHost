@@ -34,5 +34,6 @@
     <string name="might_interest_you">Might interest you</string>
     <string name="what_do_you_like">What kind of food do you like?</string>
     <string name="search">search</string>
-    <string name="previously_searched">Previously viewed</string>
+    <string name="previously_searched">Recently viewed</string>
+    <string name="filter">Filter</string>
 </resources>

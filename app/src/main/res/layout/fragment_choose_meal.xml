@@ -60,15 +60,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/move_to_filter"
+            <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_margin="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="65dp"
+                android:translationZ="3dp"
                 android:background="@drawable/filter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search_recipe_et" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/move_to_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/search_recipe_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="60dp"
+                android:background="@drawable/filter_btn_from_fragment"
+                android:text="@string/filter"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/choose_meal_rv"

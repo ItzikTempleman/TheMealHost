@@ -208,6 +208,10 @@
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/username_and_password_background_layout.xml"
     },
     {
+        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_filter_btn_from_fragment.xml.flat",
+        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/filter_btn_from_fragment.xml"
+    },
+    {
         "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
         "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },

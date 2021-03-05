@@ -1676,6 +1676,7 @@ drawable disconnect
 drawable english_title_recipe_host
 drawable filter
 drawable filter_btn
+drawable filter_btn_from_fragment
 drawable food_image
 drawable generic_confirmation
 drawable generic_confirmation_animation
@@ -2449,6 +2450,7 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string filter
 string find_your_recipe
 string forgot_password
 string hello_world
