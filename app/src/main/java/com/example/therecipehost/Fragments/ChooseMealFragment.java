@@ -1,12 +1,11 @@
 package com.example.therecipehost.Fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,21 +28,13 @@ import com.example.therecipehost.Models.IResponse;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
 import com.example.therecipehost.Utils.Utils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import static android.content.Context.MODE_PRIVATE;
-import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
-import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
 public class ChooseMealFragment extends Fragment implements IResponse {
     private EditText searchET;
@@ -110,7 +101,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     private void loadHistory() {
         if (!Utils.getHistory(getContext()).isEmpty()) {
             savedHistoryList = Utils.getHistory(getContext());
-
+            Log.d("TAG", "" + savedHistoryList.size());
             historyAdapter.updateList(savedHistoryList);
         } else historyAdapter.updateList(new ArrayList<>());
     }
