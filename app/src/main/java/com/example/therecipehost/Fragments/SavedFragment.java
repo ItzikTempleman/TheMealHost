@@ -66,7 +66,7 @@ public class SavedFragment extends Fragment {
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(likedRV);
     }
     public void getSavedList() {
-        if (!Utils.getSavedMealList(getContext()).isEmpty()) {
+        if (!Utils.getList(getContext(), MEAL).isEmpty()) {
             updateMealList();
             savedMealAdapter.updateProducts(savedMealList);
         }else savedMealAdapter.updateProducts(new ArrayList<>());
@@ -81,7 +81,7 @@ public class SavedFragment extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                Meal deletedMeal = Utils.getSavedMealList(requireContext()).get(position);
+                Meal deletedMeal = Utils.getList(requireContext(), MEAL).get(position);
                 remove(deletedMeal);
             }
         };
@@ -91,7 +91,7 @@ public class SavedFragment extends Fragment {
         deletedMeal.setLiked(false);
         Utils.remove(requireContext(), deletedMeal);
         updateMealList();
-        savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
+        savedMealAdapter.updateProducts(Utils.getList(requireContext(), MEAL));
         handleSnackBar(deletedMeal);
     }
 
@@ -111,13 +111,13 @@ public class SavedFragment extends Fragment {
         savedMealList.add(deletedMeal);
         Snackbar retrieveSB = Snackbar.make(coordinatorLayout, "item retrieved", Snackbar.LENGTH_LONG);
         retrieveSB.show();
-        Utils.saveRecipe(requireContext(), deletedMeal);
+        Utils.saveList(requireContext(), deletedMeal, MEAL);
         updateMealList();
-        savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
+        savedMealAdapter.updateProducts(Utils.getList(requireContext(), MEAL));
     }
 
     private void updateMealList() {
-        savedMealList = Utils.getSavedMealList(requireContext());
+        savedMealList = Utils.getList(requireContext(), MEAL);
     }
 
     @Override

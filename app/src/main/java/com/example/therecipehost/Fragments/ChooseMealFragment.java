@@ -36,6 +36,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
+import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
+
 public class ChooseMealFragment extends Fragment implements IResponse {
     private EditText searchET;
     private MealAdapter mealAdapter;
@@ -45,7 +48,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     public static List<Meal> mealList;
     private ImageButton moveToFilterBtn;
     private HistoryAdapter historyAdapter;
-    private List<Meal> savedHistoryList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,14 +61,12 @@ public class ChooseMealFragment extends Fragment implements IResponse {
         return inflater.inflate(R.layout.fragment_choose_meal, container, false);
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
         getAllMeals();
         setListeners();
-
         initHistory(view);
         loadHistory();
     }
@@ -99,20 +99,15 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void loadHistory() {
-        if (!Utils.getHistory(getContext()).isEmpty()) {
-            savedHistoryList = Utils.getHistory(getContext());
-            Log.d("TAG", "" + savedHistoryList.size());
+        if (!Utils.getList(getContext(), HISTORY).isEmpty()) {
+            List<Meal> savedHistoryList = Utils.getList(getContext(), HISTORY);
+            Log.d("TAG", "savedHistoryList.size=" + savedHistoryList.size());
             historyAdapter.updateList(savedHistoryList);
         } else historyAdapter.updateList(new ArrayList<>());
     }
 
-    public void handleHistory(Meal meal) {
-        if (meal.isWasSearched()) saveToHistory(meal);
-    }
-
-    private void saveToHistory(Meal meal) {
-        Utils.saveHistoryState(requireContext(), meal);
-        historyAdapter.updateList(Utils.getHistory(requireContext()));
+    public void updateHistory() {
+        historyAdapter.updateList(Utils.getList(getContext(), HISTORY));
     }
 
     private void setListeners() {
@@ -194,7 +189,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void updateRelevantMealsIfNeeded(List<Meal> mealList) {
-        List<Meal> savedMealList = Utils.getSavedMealList(requireContext());
+        List<Meal> savedMealList = Utils.getList(requireContext(), MEAL);
         if (!savedMealList.isEmpty()) {
 
             for (int i = 0; i < mealList.size(); i++) {
@@ -255,8 +250,8 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void saveRecipe(Meal meal) {
-        Utils.saveRecipe(requireContext(), meal);
-        savedMealAdapter.updateProducts(Utils.getSavedMealList(requireContext()));
+        Utils.saveList(requireContext(), meal, MEAL);
+        savedMealAdapter.updateProducts(Utils.getList(requireContext(), MEAL));
     }
 
     @Override

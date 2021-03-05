@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.therecipehost.AsyncTasks.MealAsyncTask;
+import com.example.therecipehost.Constants.GlobalConstants;
 import com.example.therecipehost.Fragments.RecipeDetailsFragment;
 import com.example.therecipehost.MainActivity;
 import com.example.therecipehost.Models.IResponse;
@@ -29,11 +30,29 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
 public class Utils {
+
+    public static String toDecimalFormat(double doubleToChange) {
+        return new DecimalFormat("0.0").format(doubleToChange);
+    }
+
+    public static String getURL(String searchTitle) {
+        return "https://themealdb.p.rapidapi.com/search.php?s=" + searchTitle;
+    }
+
+    public static int getMealById(List<Meal> meals, String mealId) {
+        int index = -1;
+
+        for (int i = 0; i < meals.size(); i++) {
+            if (meals.get(i).getId().equals(mealId)) {
+                index = i;
+            }
+        }
+        return index;
+    }
 
     public static void loadImage(String url, ImageView imageView) {
         Glide.with(imageView.getContext()).load(url).into(imageView);
@@ -43,18 +62,10 @@ public class Utils {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    public static String toDecimalFormat(double doubleToChange) {
-        return new DecimalFormat("0.0").format(doubleToChange);
-    }
-
     public static void changeFragment(FragmentManager fm, int id, Fragment fragment, boolean addToBackStack) {
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         if (addToBackStack) fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(id, fragment).commit();
-    }
-
-    public static String getURL(String searchTitle) {
-        return "https://themealdb.p.rapidapi.com/search.php?s=" + searchTitle;
     }
 
     public static void moveToDetailsFragment(Meal meal, Context context) {
@@ -65,37 +76,11 @@ public class Utils {
         changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.choose_meal_frame_layout, recipeDetailsFragment, true);
     }
 
-    public static List<Meal> getSavedMealList(Context context) {
-        List<Meal> savedMealList = new ArrayList<>();
-        SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(MEAL, null);
-        if (json != null) {
-            Type type = new TypeToken<List<Meal>>() {
-            }.getType();
-            savedMealList = gson.fromJson(json, type);
-        }
-        return savedMealList;
-    }
-
-    public static void saveRecipe(Context context, Meal meal) {
-        SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-
-        List<Meal> savedMeal = getSavedMealList(context);
-        savedMeal.add(meal);
-
-        String updatedList = gson.toJson(savedMeal);
-        editor.putString(MEAL, updatedList);
-        editor.apply();
-    }
-
     public static void remove(Context context, Meal deletedMeal) {
         SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        List<Meal> savedMealList = getSavedMealList(context);
+        List<Meal> savedMealList = getList(context, MEAL);
         int deletedMealIndex = getMealById(savedMealList, deletedMeal.getId());
         if (deletedMealIndex == -1) return;
         savedMealList.remove(deletedMealIndex);
@@ -103,17 +88,6 @@ public class Utils {
         String updateMeal = new Gson().toJson(savedMealList);
         editor.putString(MEAL, updateMeal);
         editor.apply();
-    }
-
-    private static int getMealById(List<Meal> meals, String mealId) {
-        int index = -1;
-
-        for (int i = 0; i < meals.size(); i++) {
-            if (meals.get(i).getId().equals(mealId)) {
-                index = i;
-            }
-        }
-        return index;
     }
 
     public static void loadAsyncTask(String searchKey, IResponse iResponse) {
@@ -147,29 +121,29 @@ public class Utils {
         });
     }
 
-    public static List<Meal> getHistory(Context context) {
-        List<Meal> savedHistoryList = new ArrayList<>();
-        SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(HISTORY, null);
-        if (json != null) {
-            Type type = new TypeToken<List<Meal>>() {
-            }.getType();
-            savedHistoryList = gson.fromJson(json, type);
-        }
-        return savedHistoryList;
-    }
+    public static void saveList(Context context, Meal meal, String prefKey) {
+        List<Meal> savedMeal = getList(context, prefKey);
 
-    public static void saveHistoryState(Context context, Meal meal) {
         SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
 
-        List<Meal> savedHistoryMeal = getSavedMealList(context);
-        savedHistoryMeal.add(meal);
+        savedMeal.add(meal);
 
-        String updatedList = gson.toJson(savedHistoryMeal);
-        editor.putString(HISTORY, updatedList);
+        String updatedList = gson.toJson(savedMeal);
+        editor.putString(prefKey, updatedList);
         editor.apply();
+    }
+
+    public static List<Meal> getList(Context context, String prefKey) {
+        List<Meal> savedMealList = new ArrayList<>();
+        SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(prefKey, null);
+        if (json != null) {
+            Type type = new TypeToken<List<Meal>>() {}.getType();
+            savedMealList = gson.fromJson(json, type);
+        }
+        return savedMealList;
     }
 }
