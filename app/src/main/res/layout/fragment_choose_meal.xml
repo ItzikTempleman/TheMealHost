@@ -35,15 +35,14 @@
 
             <EditText
                 android:id="@+id/search_recipe_et"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
-                android:background="@drawable/bottom_line_ui"
-                android:drawableEnd="@drawable/search_icon"
+                android:background="@drawable/transparent"
+                android:drawableStart="@drawable/search_icon"
                 android:hint="@string/search"
                 android:maxLines="1"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/find_recipe_tv" />
 

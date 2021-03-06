@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.therecipehost.AsyncTasks.MealAsyncTask;
-import com.example.therecipehost.Constants.GlobalConstants;
 import com.example.therecipehost.Fragments.RecipeDetailsFragment;
 import com.example.therecipehost.MainActivity;
 import com.example.therecipehost.Models.IResponse;
@@ -30,6 +29,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 import static com.example.therecipehost.Constants.GlobalConstants.MEAL;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
@@ -76,17 +76,17 @@ public class Utils {
         changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.choose_meal_frame_layout, recipeDetailsFragment, true);
     }
 
-    public static void remove(Context context, Meal deletedMeal) {
+    public static void remove(Context context, Meal deletedMeal, String prefKey) {
         SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        List<Meal> savedMealList = getList(context, MEAL);
+        List<Meal> savedMealList = getList(context, prefKey);
         int deletedMealIndex = getMealById(savedMealList, deletedMeal.getId());
         if (deletedMealIndex == -1) return;
         savedMealList.remove(deletedMealIndex);
 
         String updateMeal = new Gson().toJson(savedMealList);
-        editor.putString(MEAL, updateMeal);
+        editor.putString(prefKey, updateMeal);
         editor.apply();
     }
 
@@ -141,9 +141,28 @@ public class Utils {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(prefKey, null);
         if (json != null) {
-            Type type = new TypeToken<List<Meal>>() {}.getType();
+            Type type = new TypeToken<List<Meal>>() {
+            }.getType();
             savedMealList = gson.fromJson(json, type);
         }
         return savedMealList;
+    }
+
+    public static void checkForDoubleMealsInHistory(Context context, List<Meal> doubleHistoryList) {
+        List<Meal> historyList = getList(context, HISTORY);
+        if (!historyList.isEmpty()) {
+
+            for (int i = 0; i < doubleHistoryList.size(); i++) {
+                Meal doubleMeal = doubleHistoryList.get(i);
+
+                for (int j = 0; j < historyList.size(); j++) {
+                    Meal savedMeal = historyList.get(j);
+
+                    if (savedMeal.getTitle().equals(doubleMeal.getTitle())) {
+                        doubleHistoryList.remove(savedMeal);
+                    }
+                }
+            }
+        }
     }
 }

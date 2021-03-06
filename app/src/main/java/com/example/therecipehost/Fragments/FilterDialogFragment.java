@@ -75,7 +75,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         Flow flow = view.findViewById(R.id.fragment_choose_meal_categories_flow_view);
 
         int[] buttonsIds = new int[10];
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < categories.length; i++) {
             Button button = new Button(requireContext());
             String currentCategoryTitle = categories[i].getText();
             button.setText(currentCategoryTitle);

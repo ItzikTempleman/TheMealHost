@@ -247,7 +247,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
 
     public void handleRecipe(Meal meal) {
         if (meal.isLiked()) saveRecipe(meal);
-        else Utils.remove(requireContext(), meal);
+        else Utils.remove(requireContext(), meal, MEAL);
     }
 
     private void saveRecipe(Meal meal) {
