@@ -40,7 +40,6 @@ public class SavedFragment extends Fragment {
     private SavedMealAdapter savedMealAdapter;
     private ItemTouchHelper.SimpleCallback itemTouchHelperCallback;
     private CoordinatorLayout coordinatorLayout;
-private ChooseMealFragment chooseMealFragment;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ private ChooseMealFragment chooseMealFragment;
     private void initView(View view) {
         coordinatorLayout = view.findViewById(R.id.coordinator_layout);
         RecyclerView likedRV = view.findViewById(R.id.favorites_rv_saved);
-        savedMealAdapter = new SavedMealAdapter(getContext(), chooseMealFragment);
+        savedMealAdapter = new SavedMealAdapter(getContext());
         LinearLayoutManager verticalLayout = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         likedRV.setLayoutManager(verticalLayout);
         likedRV.setAdapter(savedMealAdapter);

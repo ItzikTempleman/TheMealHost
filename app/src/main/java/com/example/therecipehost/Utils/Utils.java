@@ -14,13 +14,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.therecipehost.Adapters.HistoryAdapter;
 import com.example.therecipehost.AsyncTasks.MealAsyncTask;
 import com.example.therecipehost.Fragments.RecipeDetailsFragment;
 import com.example.therecipehost.MainActivity;
 import com.example.therecipehost.Models.IResponse;
 import com.example.therecipehost.Models.Meal;
-import com.example.therecipehost.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -149,25 +147,48 @@ public class Utils {
         return savedMealList;
     }
 
-    public static void removeDoubleMealsInHistory(Context context, List<Meal> doubleHistoryList) {
-        List<Meal> historyList = new ArrayList<>();
-        if (historyList.isEmpty()) {
-            historyList = getList(context, HISTORY);
-            for (int i = 0; i < historyList.size(); i++) {
-                Meal mainHistoryMeal = historyList.get(i);
+//    public static void removeDoubleMealsInHistory(Context context, List<Meal> mainHistoryList) {
+//        List<Meal> doubleHistoryList = new ArrayList<>();
+//        if (!doubleHistoryList.isEmpty()) {
+//            doubleHistoryList = getList(context, HISTORY);
+//
+//            for (int i = 0; i < mainHistoryList.size(); i++) {
+//                Meal mainHistoryMeal = mainHistoryList.get(i);
+//
+//                for (int j = 0; j < doubleHistoryList.size(); j++) {
+//                    Meal doubleMeal = doubleHistoryList.get(j);
+//
+//                    String mealInHistoryId = mainHistoryMeal.getId();
+//                    String doubleMealInHistoryId = doubleMeal.getId();
+//
+//                    if (mealInHistoryId.equals(doubleMealInHistoryId)) {
+//
+//                        if (mainHistoryList.contains(doubleMealInHistoryId))
+//                            mainHistoryList.remove(doubleMeal);
+//                    }
+//                }
+//            }
+//        }
+//    }
 
-                for (int j = 0; j < doubleHistoryList.size(); j++) {
-                    Meal doubleMeal = doubleHistoryList.get(j);
 
-                    String mealInHistoryId = mainHistoryMeal.getId();
-                    String doubleMealInHistoryId = doubleMeal.getId();
+    public static void removeDoubleMealsInHistory(Context context) {
+        List<Meal> historyList = getList(context, HISTORY);
 
-                    if (mealInHistoryId.equals(doubleMealInHistoryId))
-                        historyList.remove(doubleMeal);
-                }
+        for (int i = 0; i < historyList.size(); i++) {
+            Meal historyMeal = historyList.get(i);
+
+            for (int j = 0; j < historyList.size(); j++) {
+                Meal secondMeal = historyList.get(j);
+
+                if (historyMeal.getId().equals(secondMeal.getId()))
+
+                    historyList.remove(secondMeal);
+
             }
         }
     }
+
 
     public static boolean removeHistory(Context context, String prefKey) {
 

@@ -44,8 +44,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Utils.moveToDetailsFragment(meal, context, R.id.choose_meal_frame_layout);
-                chooseMealFragment.removeHistoryBtn.setVisibility(View.VISIBLE);
-                chooseMealFragment.previouslySearchedTV.setText(R.string.previously_searched);
             }
         });
 

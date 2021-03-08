@@ -21,10 +21,8 @@ import java.util.List;
 public class SavedMealAdapter extends RecyclerView.Adapter<SavedMealAdapter.ViewHolder> {
     public List<Meal> meals = new ArrayList<>();
     private final Context context;
-    private ChooseMealFragment chooseMealFragment;
 
-    public SavedMealAdapter(Context context, ChooseMealFragment chooseMealFragment) {
-        this.chooseMealFragment = chooseMealFragment;
+    public SavedMealAdapter(Context context) {
         this.context = context;
     }
 
@@ -45,8 +43,6 @@ public class SavedMealAdapter extends RecyclerView.Adapter<SavedMealAdapter.View
             @Override
             public void onClick(View v) {
                 Utils.moveToDetailsFragment(meal, context, R.id.saved_list_frame_layout);
-                chooseMealFragment.removeHistoryBtn.setVisibility(View.VISIBLE);
-                chooseMealFragment.previouslySearchedTV.setText(R.string.previously_searched);
             }
         });
 

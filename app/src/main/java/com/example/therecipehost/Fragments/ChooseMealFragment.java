@@ -85,7 +85,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
         RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
         progressBar = view.findViewById(R.id.loading_pb);
         emptyStateIV = view.findViewById(R.id.choose_meal_empty_state_image_view);
-        savedMealAdapter = new SavedMealAdapter(getContext(), this);
+        savedMealAdapter = new SavedMealAdapter(getContext());
         mealAdapter = new MealAdapter(requireContext(), this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRV.setLayoutManager(linearLayoutManager);
