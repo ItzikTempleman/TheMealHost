@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.therecipehost.Fragments.ChooseMealFragment;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
 import com.example.therecipehost.Utils.Utils;
@@ -16,12 +17,16 @@ import com.example.therecipehost.Utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
+
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     public List<Meal> previouslySearchedRecipeList = new ArrayList<>();
     private final Context context;
+    private final ChooseMealFragment chooseMealFragment;
 
-    public HistoryAdapter(Context context) {
-        this.context=context;
+    public HistoryAdapter(Context context, ChooseMealFragment chooseMealFragment) {
+        this.context = context;
+        this.chooseMealFragment = chooseMealFragment;
     }
 
     @NonNull
@@ -56,4 +61,5 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         previouslySearchedRecipeList.addAll(newHistoryList);
         notifyDataSetChanged();
     }
+
 }

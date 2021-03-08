@@ -23,9 +23,10 @@ import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 
     private final List<Meal> mealList = new ArrayList<>();
+    private final List<Meal> doubleHistoryList = new ArrayList<>();
     private final Context context;
     final ChooseMealFragment chooseMealFragment;
-    private List<Meal> doubleHistoryList = new ArrayList<>();
+
 
     public MealAdapter(Context context, ChooseMealFragment chooseMealFragment) {
         this.context = context;
@@ -61,13 +62,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Utils.moveToDetailsFragment(meal, context);
-
-                meal.setWasSearched(true);
                 doubleHistoryList.add(meal);
 
-                Utils.checkForDoubleMealsInHistory(context,doubleHistoryList );
+                //if (Utils.checkForDoubleMealsInHistory(context, doubleHistoryList)) {
                 Utils.saveList(context, meal, HISTORY);
                 chooseMealFragment.updateHistory();
+
+                chooseMealFragment.removeHistoryBtn.setVisibility(View.VISIBLE);
+//                // }
             }
         });
     }

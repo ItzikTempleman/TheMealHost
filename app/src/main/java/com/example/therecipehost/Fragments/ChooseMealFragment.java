@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -47,7 +46,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     private ProgressBar progressBar;
     public ImageView emptyStateIV;
     public static List<Meal> mealList;
-    private Button moveToFilterBtn;
+    public Button moveToFilterBtn, removeHistoryBtn;
     private HistoryAdapter historyAdapter;
 
     @Override
@@ -78,6 +77,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void initView(View view) {
+        removeHistoryBtn = view.findViewById(R.id.remove_history);
         searchET = view.findViewById(R.id.search_recipe_et);
         moveToFilterBtn = view.findViewById(R.id.move_to_filter);
         RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
@@ -92,7 +92,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void initHistory(View view) {
-        historyAdapter = new HistoryAdapter(getContext());
+        historyAdapter = new HistoryAdapter(getContext(), this);
         LinearLayoutManager historyLayout = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         RecyclerView historyRV = view.findViewById(R.id.history_of_recipe_rv);
         historyRV.setLayoutManager(historyLayout);
@@ -102,7 +102,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     private void loadHistory() {
         if (!Utils.getList(getContext(), HISTORY).isEmpty()) {
             List<Meal> savedHistoryList = Utils.getList(getContext(), HISTORY);
-            Log.d("TAG", "savedHistoryList.size=" + savedHistoryList.size());
             historyAdapter.updateList(savedHistoryList);
         } else historyAdapter.updateList(new ArrayList<>());
     }
@@ -112,6 +111,18 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void setListeners() {
+        removeHistoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Utils.removeHistory(getContext(), HISTORY)) {
+                    removeHistoryBtn.setVisibility(View.GONE);
+                }
+
+                historyAdapter.updateList(new ArrayList<>());
+
+            }
+        });
+
         moveToFilterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

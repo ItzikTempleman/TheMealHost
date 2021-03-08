@@ -1726,6 +1726,7 @@ drawable profile
 drawable progressbar_color
 drawable project_title_hebrew
 drawable recipes
+drawable remove
 drawable rounded_image_border
 drawable saved
 drawable search_icon
@@ -2072,6 +2073,7 @@ id radio
 id ratio
 id recipe_thumb_image
 id rectangles
+id remove_history
 id reverseSawtooth
 id right
 id right_icon
