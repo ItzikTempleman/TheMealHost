@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.therecipehost.Adapters.HistoryAdapter;
 import com.example.therecipehost.AsyncTasks.MealAsyncTask;
 import com.example.therecipehost.Fragments.RecipeDetailsFragment;
 import com.example.therecipehost.MainActivity;
@@ -68,12 +69,12 @@ public class Utils {
         fragmentTransaction.replace(id, fragment).commit();
     }
 
-    public static void moveToDetailsFragment(Meal meal, Context context) {
+    public static void moveToDetailsFragment(Meal meal, Context context, int id) {
         RecipeDetailsFragment recipeDetailsFragment = new RecipeDetailsFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(MEAL, meal);
         recipeDetailsFragment.setArguments(bundle);
-        changeFragment(((MainActivity) context).getSupportFragmentManager(), R.id.choose_meal_frame_layout, recipeDetailsFragment, true);
+        changeFragment(((MainActivity) context).getSupportFragmentManager(), id, recipeDetailsFragment, true);
     }
 
     public static void remove(Context context, Meal deletedMeal, String prefKey) {
@@ -148,7 +149,7 @@ public class Utils {
         return savedMealList;
     }
 
-    public static boolean checkForDoubleMealsInHistory(Context context, List<Meal> doubleHistoryList) {
+    public static void removeDoubleMealsInHistory(Context context, List<Meal> doubleHistoryList) {
         List<Meal> historyList = new ArrayList<>();
         if (historyList.isEmpty()) {
             historyList = getList(context, HISTORY);
@@ -158,14 +159,14 @@ public class Utils {
                 for (int j = 0; j < doubleHistoryList.size(); j++) {
                     Meal doubleMeal = doubleHistoryList.get(j);
 
-                    String mealInHistoryTitle = mainHistoryMeal.getId();
-                    String doubleMealInHistoryTitle = doubleMeal.getId();
+                    String mealInHistoryId = mainHistoryMeal.getId();
+                    String doubleMealInHistoryId = doubleMeal.getId();
 
-                    return !mealInHistoryTitle.equals(doubleMealInHistoryTitle);
+                    if (mealInHistoryId.equals(doubleMealInHistoryId))
+                        historyList.remove(doubleMeal);
                 }
             }
         }
-        return true;
     }
 
     public static boolean removeHistory(Context context, String prefKey) {

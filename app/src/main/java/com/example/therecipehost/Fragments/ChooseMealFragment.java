@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,6 +48,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     public static List<Meal> mealList;
     public Button moveToFilterBtn, removeHistoryBtn;
     private HistoryAdapter historyAdapter;
+    public TextView previouslySearchedTV;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,13 +78,14 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void initView(View view) {
+        previouslySearchedTV = view.findViewById(R.id.previously_searched_tv);
         removeHistoryBtn = view.findViewById(R.id.remove_history);
         searchET = view.findViewById(R.id.search_recipe_et);
         moveToFilterBtn = view.findViewById(R.id.move_to_filter);
         RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
         progressBar = view.findViewById(R.id.loading_pb);
         emptyStateIV = view.findViewById(R.id.choose_meal_empty_state_image_view);
-        savedMealAdapter = new SavedMealAdapter(getContext());
+        savedMealAdapter = new SavedMealAdapter(getContext(), this);
         mealAdapter = new MealAdapter(requireContext(), this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         mealRV.setLayoutManager(linearLayoutManager);
@@ -114,8 +116,9 @@ public class ChooseMealFragment extends Fragment implements IResponse {
         removeHistoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Utils.removeHistory(getContext(), HISTORY)) {
+                if (Utils.removeHistory(getContext(), HISTORY)) {
                     removeHistoryBtn.setVisibility(View.GONE);
+                    previouslySearchedTV.setText(R.string.previous_search);
                 }
 
                 historyAdapter.updateList(new ArrayList<>());

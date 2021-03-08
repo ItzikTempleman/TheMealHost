@@ -1,7 +1,6 @@
 package com.example.therecipehost.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.therecipehost.Fragments.ChooseMealFragment;
-import com.example.therecipehost.Fragments.SavedFragment;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
 import com.example.therecipehost.Utils.Utils;
@@ -23,8 +21,10 @@ import java.util.List;
 public class SavedMealAdapter extends RecyclerView.Adapter<SavedMealAdapter.ViewHolder> {
     public List<Meal> meals = new ArrayList<>();
     private final Context context;
+    private ChooseMealFragment chooseMealFragment;
 
-    public SavedMealAdapter(Context context) {
+    public SavedMealAdapter(Context context, ChooseMealFragment chooseMealFragment) {
+        this.chooseMealFragment = chooseMealFragment;
         this.context = context;
     }
 
@@ -44,7 +44,9 @@ public class SavedMealAdapter extends RecyclerView.Adapter<SavedMealAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.moveToDetailsFragment(meal, context);
+                Utils.moveToDetailsFragment(meal, context, R.id.saved_list_frame_layout);
+                chooseMealFragment.removeHistoryBtn.setVisibility(View.VISIBLE);
+                chooseMealFragment.previouslySearchedTV.setText(R.string.previously_searched);
             }
         });
 

@@ -61,15 +61,18 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.moveToDetailsFragment(meal, context);
+                Utils.moveToDetailsFragment(meal, context, R.id.choose_meal_frame_layout);
                 doubleHistoryList.add(meal);
 
-                //if (Utils.checkForDoubleMealsInHistory(context, doubleHistoryList)) {
+
                 Utils.saveList(context, meal, HISTORY);
                 chooseMealFragment.updateHistory();
 
                 chooseMealFragment.removeHistoryBtn.setVisibility(View.VISIBLE);
-//                // }
+                chooseMealFragment.previouslySearchedTV.setText(R.string.previously_searched);
+
+                Utils.removeDoubleMealsInHistory(context, doubleHistoryList);
+                chooseMealFragment.updateHistory();
             }
         });
     }

@@ -36,4 +36,5 @@
     <string name="search">search</string>
     <string name="previously_searched">Recently viewed</string>
     <string name="filter">Filter</string>
+    <string name="previous_search">No search history found</string>
 </resources>

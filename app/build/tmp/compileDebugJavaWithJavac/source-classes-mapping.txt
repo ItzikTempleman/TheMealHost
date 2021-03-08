@@ -3,48 +3,27 @@ com/example/therecipehost/Models/IResponse.java
 com/example/therecipehost/activities/LoginActivity.java
  com.example.therecipehost.activities.LoginActivity
  com.example.therecipehost.activities.LoginActivity$1
-com/example/therecipehost/BuildConfig.java
- com.example.therecipehost.BuildConfig
-com/example/therecipehost/Constants/GlobalConstants.java
- com.example.therecipehost.Constants.GlobalConstants
+com/example/therecipehost/Adapters/HistoryAdapter.java
+ com.example.therecipehost.Adapters.HistoryAdapter
+ com.example.therecipehost.Adapters.HistoryAdapter$1
+ com.example.therecipehost.Adapters.HistoryAdapter$ViewHolder
+com/example/therecipehost/Utils/Utils.java
+ com.example.therecipehost.Utils.Utils
+ com.example.therecipehost.Utils.Utils$1
+ com.example.therecipehost.Utils.Utils$2
 com/example/therecipehost/MainActivity.java
  com.example.therecipehost.MainActivity
  com.example.therecipehost.MainActivity$1
-com/example/therecipehost/Models/Category.java
- com.example.therecipehost.Models.Category
+com/example/therecipehost/Fragments/FilterDialogFragment.java
+ com.example.therecipehost.Fragments.FilterDialogFragment
+ com.example.therecipehost.Fragments.FilterDialogFragment$1
+ com.example.therecipehost.Fragments.FilterDialogFragment$2
 com/example/therecipehost/Models/Meal.java
  com.example.therecipehost.Models.Meal
  com.example.therecipehost.Models.Meal$1
 com/example/therecipehost/SplashActivity.java
  com.example.therecipehost.SplashActivity
  com.example.therecipehost.SplashActivity$1
-com/example/therecipehost/Fragments/RecipeDetailsFragment.java
- com.example.therecipehost.Fragments.RecipeDetailsFragment
-com/example/therecipehost/Fragments/ProfileFragment.java
- com.example.therecipehost.Fragments.ProfileFragment
- com.example.therecipehost.Fragments.ProfileFragment$1
-com/example/therecipehost/Adapters/MealAdapter.java
- com.example.therecipehost.Adapters.MealAdapter
- com.example.therecipehost.Adapters.MealAdapter$1
- com.example.therecipehost.Adapters.MealAdapter$2
- com.example.therecipehost.Adapters.MealAdapter$ViewHolder
-com/example/therecipehost/Adapters/SavedMealAdapter.java
- com.example.therecipehost.Adapters.SavedMealAdapter
- com.example.therecipehost.Adapters.SavedMealAdapter$1
- com.example.therecipehost.Adapters.SavedMealAdapter$ViewHolder
-com/example/therecipehost/Adapters/HistoryAdapter.java
- com.example.therecipehost.Adapters.HistoryAdapter
- com.example.therecipehost.Adapters.HistoryAdapter$ViewHolder
-com/example/therecipehost/AsyncTasks/MealAsyncTask.java
- com.example.therecipehost.AsyncTasks.MealAsyncTask
-com/example/therecipehost/Utils/Utils.java
- com.example.therecipehost.Utils.Utils
- com.example.therecipehost.Utils.Utils$1
- com.example.therecipehost.Utils.Utils$2
-com/example/therecipehost/Fragments/FilterDialogFragment.java
- com.example.therecipehost.Fragments.FilterDialogFragment
- com.example.therecipehost.Fragments.FilterDialogFragment$1
- com.example.therecipehost.Fragments.FilterDialogFragment$2
 com/example/therecipehost/Fragments/ChooseMealFragment.java
  com.example.therecipehost.Fragments.ChooseMealFragment
  com.example.therecipehost.Fragments.ChooseMealFragment$1
@@ -53,9 +32,31 @@ com/example/therecipehost/Fragments/ChooseMealFragment.java
  com.example.therecipehost.Fragments.ChooseMealFragment$4
  com.example.therecipehost.Fragments.ChooseMealFragment$5
  com.example.therecipehost.Fragments.ChooseMealFragment$6
+com/example/therecipehost/Fragments/ProfileFragment.java
+ com.example.therecipehost.Fragments.ProfileFragment
+ com.example.therecipehost.Fragments.ProfileFragment$1
 com/example/therecipehost/Adapters/FragmentViewPagerAdapter.java
  com.example.therecipehost.Adapters.FragmentViewPagerAdapter
 com/example/therecipehost/Fragments/SavedFragment.java
  com.example.therecipehost.Fragments.SavedFragment
  com.example.therecipehost.Fragments.SavedFragment$1
  com.example.therecipehost.Fragments.SavedFragment$2
+com/example/therecipehost/Adapters/MealAdapter.java
+ com.example.therecipehost.Adapters.MealAdapter
+ com.example.therecipehost.Adapters.MealAdapter$1
+ com.example.therecipehost.Adapters.MealAdapter$2
+ com.example.therecipehost.Adapters.MealAdapter$ViewHolder
+com/example/therecipehost/Fragments/RecipeDetailsFragment.java
+ com.example.therecipehost.Fragments.RecipeDetailsFragment
+com/example/therecipehost/Adapters/SavedMealAdapter.java
+ com.example.therecipehost.Adapters.SavedMealAdapter
+ com.example.therecipehost.Adapters.SavedMealAdapter$1
+ com.example.therecipehost.Adapters.SavedMealAdapter$ViewHolder
+com/example/therecipehost/AsyncTasks/MealAsyncTask.java
+ com.example.therecipehost.AsyncTasks.MealAsyncTask
+com/example/therecipehost/Models/Category.java
+ com.example.therecipehost.Models.Category
+com/example/therecipehost/BuildConfig.java
+ com.example.therecipehost.BuildConfig
+com/example/therecipehost/Constants/GlobalConstants.java
+ com.example.therecipehost.Constants.GlobalConstants

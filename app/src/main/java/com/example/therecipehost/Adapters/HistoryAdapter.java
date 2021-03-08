@@ -39,6 +39,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     public void onBindViewHolder(@NonNull HistoryAdapter.ViewHolder holder, int position) {
         final Meal meal = previouslySearchedRecipeList.get(position);
         Utils.loadImage(meal.getThumbPath(), holder.historyIV);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.moveToDetailsFragment(meal, context, R.id.choose_meal_frame_layout);
+                chooseMealFragment.removeHistoryBtn.setVisibility(View.VISIBLE);
+                chooseMealFragment.previouslySearchedTV.setText(R.string.previously_searched);
+            }
+        });
+
     }
 
 
