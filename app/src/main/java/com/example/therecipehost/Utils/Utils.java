@@ -120,18 +120,19 @@ public class Utils {
         });
     }
 
-    public static void saveList(Context context, Meal meal, String prefKey) {
-        List<Meal> savedMeal = getList(context, prefKey);
-
-        SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-
-        savedMeal.add(meal);
-
-        String updatedList = gson.toJson(savedMeal);
-        editor.putString(prefKey, updatedList);
-        editor.apply();
+    public static List<Meal> saveList(Context context, Meal meal, String prefKey) {
+        List<Meal> mealToSave= new ArrayList<>();
+        if (!checkIfItemExists(context)) {
+           mealToSave = getList(context, prefKey);
+            SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+            mealToSave.add(meal);
+            String updatedList = gson.toJson(mealToSave);
+            editor.putString(prefKey, updatedList);
+            editor.apply();
+        } else mealToSave.remove(meal);
+        return mealToSave;
     }
 
     public static List<Meal> getList(Context context, String prefKey) {
@@ -147,51 +148,22 @@ public class Utils {
         return savedMealList;
     }
 
-//    public static void removeDoubleMealsInHistory(Context context, List<Meal> mainHistoryList) {
-//        List<Meal> doubleHistoryList = new ArrayList<>();
-//        if (!doubleHistoryList.isEmpty()) {
-//            doubleHistoryList = getList(context, HISTORY);
-//
-//            for (int i = 0; i < mainHistoryList.size(); i++) {
-//                Meal mainHistoryMeal = mainHistoryList.get(i);
-//
-//                for (int j = 0; j < doubleHistoryList.size(); j++) {
-//                    Meal doubleMeal = doubleHistoryList.get(j);
-//
-//                    String mealInHistoryId = mainHistoryMeal.getId();
-//                    String doubleMealInHistoryId = doubleMeal.getId();
-//
-//                    if (mealInHistoryId.equals(doubleMealInHistoryId)) {
-//
-//                        if (mainHistoryList.contains(doubleMealInHistoryId))
-//                            mainHistoryList.remove(doubleMeal);
-//                    }
-//                }
-//            }
-//        }
-//    }
 
-
-    public static void removeDoubleMealsInHistory(Context context) {
+    public static boolean checkIfItemExists(Context context) {
+        boolean wasMealSearched = true;
         List<Meal> historyList = getList(context, HISTORY);
-
         for (int i = 0; i < historyList.size(); i++) {
-            Meal historyMeal = historyList.get(i);
 
-            for (int j = 0; j < historyList.size(); j++) {
-                Meal secondMeal = historyList.get(j);
 
-                if (historyMeal.getId().equals(secondMeal.getId()))
+            Meal meal = historyList.get(i);
+            wasMealSearched = meal.isWasSearched();
 
-                    historyList.remove(secondMeal);
-
-            }
         }
+        return !wasMealSearched;
     }
 
 
     public static boolean removeHistory(Context context, String prefKey) {
-
         SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(prefKey);

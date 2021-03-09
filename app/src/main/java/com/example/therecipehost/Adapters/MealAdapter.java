@@ -23,7 +23,7 @@ import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 
     private final List<Meal> mealList = new ArrayList<>();
-    private final List<Meal> doubleHistoryList = new ArrayList<>();
+    public  final List<Meal> doubleHistoryList = new ArrayList<>();
     private final Context context;
     final ChooseMealFragment chooseMealFragment;
 
@@ -62,9 +62,9 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Utils.moveToDetailsFragment(meal, context, R.id.choose_meal_frame_layout);
+                meal.setWasSearched(true);
                 doubleHistoryList.add(meal);
                 Utils.saveList(context, meal, HISTORY);
-                Utils.removeDoubleMealsInHistory(context);
                 chooseMealFragment.updateHistory();
                 chooseMealFragment.removeHistoryBtn.setVisibility(View.VISIBLE);
                 chooseMealFragment.previouslySearchedTV.setText(R.string.previously_searched);

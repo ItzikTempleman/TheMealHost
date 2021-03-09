@@ -94,7 +94,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void initHistory(View view) {
-        historyAdapter = new HistoryAdapter(getContext(), this);
+        historyAdapter = new HistoryAdapter(getContext());
         LinearLayoutManager historyLayout = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         RecyclerView historyRV = view.findViewById(R.id.history_of_recipe_rv);
         historyRV.setLayoutManager(historyLayout);

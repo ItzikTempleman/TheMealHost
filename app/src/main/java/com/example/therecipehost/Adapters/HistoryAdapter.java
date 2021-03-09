@@ -22,11 +22,11 @@ import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     public List<Meal> previouslySearchedRecipeList = new ArrayList<>();
     private final Context context;
-    private final ChooseMealFragment chooseMealFragment;
 
-    public HistoryAdapter(Context context, ChooseMealFragment chooseMealFragment) {
+
+    public HistoryAdapter(Context context) {
         this.context = context;
-        this.chooseMealFragment = chooseMealFragment;
+
     }
 
     @NonNull
