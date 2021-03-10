@@ -121,9 +121,9 @@ public class Utils {
     }
 
     public static List<Meal> saveList(Context context, Meal meal, String prefKey) {
-        List<Meal> mealToSave= new ArrayList<>();
-        if (!checkIfItemExists(context)) {
-           mealToSave = getList(context, prefKey);
+        List<Meal> mealToSave = new ArrayList<>();
+        if (!checkIfItemExists(context, meal)) {
+            mealToSave = getList(context, prefKey);
             SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             Gson gson = new Gson();
@@ -149,17 +149,17 @@ public class Utils {
     }
 
 
-    public static boolean checkIfItemExists(Context context) {
-        boolean wasMealSearched = true;
-        List<Meal> historyList = getList(context, HISTORY);
-        for (int i = 0; i < historyList.size(); i++) {
-
-
-            Meal meal = historyList.get(i);
-            wasMealSearched = meal.isWasSearched();
-
+    public static boolean checkIfItemExists(Context context, Meal meal) {
+        List<Meal> historyListToCheckFrom = getList(context, HISTORY);
+        for (int i = 0; i < historyListToCheckFrom.size(); i++) {
+            Meal mealToCheckFromList = historyListToCheckFrom.get(i);
+            String mealId = mealToCheckFromList.getId();
+            String secondMealId = meal.getId();
+            if (mealId.equals(secondMealId)) {
+                return true;
+            }
         }
-        return !wasMealSearched;
+        return false;
     }
 
 
