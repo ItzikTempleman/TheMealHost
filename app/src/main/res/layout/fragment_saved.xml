@@ -8,6 +8,7 @@
     tools:context=".Fragments.SavedFragment">
 
     <FrameLayout
+        android:background="#ECEBEB"
         android:id="@+id/saved_list_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

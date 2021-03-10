@@ -62,7 +62,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Utils.moveToDetailsFragment(meal, context, R.id.choose_meal_frame_layout);
-                //meal.setWasSearched(true);
                 doubleHistoryList.add(meal);
                 Utils.saveList(context, meal, HISTORY);
                 chooseMealFragment.updateHistory();

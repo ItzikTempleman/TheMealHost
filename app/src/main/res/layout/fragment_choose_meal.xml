@@ -7,6 +7,7 @@
     tools:context="com.example.therecipehost.Fragments.ChooseMealFragment">
 
     <FrameLayout
+        android:background="#ECEBEB"
         android:id="@+id/choose_meal_frame_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -19,6 +19,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.therecipehost.Models.Category;
 import com.example.therecipehost.Models.Meal;
 import com.example.therecipehost.R;
+import com.example.therecipehost.Utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -29,6 +30,7 @@ import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.therecipehost.Constants.GlobalConstants.FILTERED_CATEGORY;
+import static com.example.therecipehost.Constants.GlobalConstants.HISTORY;
 import static com.example.therecipehost.Constants.GlobalConstants.SHARED_PREFS;
 
 public class FilterDialogFragment extends DialogFragment implements View.OnClickListener {
