@@ -87,8 +87,8 @@ public class SavedFragment extends Fragment {
     }
 
     public void remove(Meal deletedMeal) {
-        deletedMeal.setLiked(false);
         Utils.remove(requireContext(), deletedMeal, MEAL);
+        deletedMeal.setLiked(false);
         updateMealList();
         savedMealAdapter.updateProducts(Utils.getList(requireContext(), MEAL));
         handleSnackBar(deletedMeal);
@@ -108,6 +108,7 @@ public class SavedFragment extends Fragment {
 
     private void retrieve(Meal deletedMeal) {
         savedMealList.add(deletedMeal);
+        deletedMeal.setLiked(true);
         Snackbar retrieveSB = Snackbar.make(coordinatorLayout, "item retrieved", Snackbar.LENGTH_LONG);
         retrieveSB.show();
         Utils.saveList(requireContext(), deletedMeal, MEAL);

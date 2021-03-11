@@ -63,6 +63,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
             public void onClick(View v) {
                 Utils.moveToDetailsFragment(meal, context, R.id.choose_meal_frame_layout);
                 doubleHistoryList.add(meal);
+                meal.setWasSearched(true);
                 Utils.saveList(context, meal, HISTORY);
                 chooseMealFragment.updateHistory();
                 chooseMealFragment.removeHistoryBtn.setVisibility(View.VISIBLE);

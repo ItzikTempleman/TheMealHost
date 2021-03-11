@@ -122,7 +122,7 @@ public class Utils {
 
     public static List<Meal> saveList(Context context, Meal meal, String prefKey) {
         List<Meal> mealToSave = new ArrayList<>();
-        if (!checkIfItemExists(context, meal)) {
+        if (!checkIfItemExists(context, meal, prefKey)) {
             mealToSave = getList(context, prefKey);
             SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -149,14 +149,16 @@ public class Utils {
     }
 
 
-    public static boolean checkIfItemExists(Context context, Meal meal) {
-        List<Meal> historyListToCheckFrom = getList(context, HISTORY);
-        for (int i = 0; i < historyListToCheckFrom.size(); i++) {
-            Meal mealToCheckFromList = historyListToCheckFrom.get(i);
-            String mealId = mealToCheckFromList.getId();
-            String secondMealId = meal.getId();
-            if (mealId.equals(secondMealId)) {
-                return true;
+    public static boolean checkIfItemExists(Context context, Meal meal, String prefKey) {
+        if (prefKey.equals(HISTORY)) {
+            List<Meal> historyListToCheckFrom = getList(context, HISTORY);
+            for (int i = 0; i < historyListToCheckFrom.size(); i++) {
+                Meal mealToCheckFromList = historyListToCheckFrom.get(i);
+                String mealId = mealToCheckFromList.getId();
+                String secondMealId = meal.getId();
+                if (mealId.equals(secondMealId)) {
+                    return true;
+                }
             }
         }
         return false;
