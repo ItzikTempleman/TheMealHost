@@ -1,7 +1,7 @@
-#Sun Mar 14 22:41:04 IST 2021
-base.0=/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+#Thu Mar 11 13:44:39 IST 2021
+base.0=/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
+base.1=/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex

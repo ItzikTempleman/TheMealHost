@@ -87,8 +87,8 @@ public class SavedFragment extends Fragment {
     }
 
     public void remove(Meal deletedMeal) {
-        Utils.remove(requireContext(), deletedMeal, MEAL);
         deletedMeal.setLiked(false);
+        Utils.remove(requireContext(), deletedMeal, MEAL);
         updateMealList();
         savedMealAdapter.updateProducts(Utils.getList(requireContext(), MEAL));
         handleSnackBar(deletedMeal);
