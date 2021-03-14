@@ -1936,6 +1936,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id filter_image_view
 id find_recipe_tv
 id fitToContents
 id fixed
@@ -2010,7 +2011,6 @@ id month_navigation_next
 id month_navigation_previous
 id month_title
 id motion_base
-id move_to_filter
 id mtrl_calendar_day_selector_frame
 id mtrl_calendar_days_of_week
 id mtrl_calendar_frame
@@ -2319,7 +2319,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout filter_view
+layout filter_dialog_fragment
 layout fragment_choose_meal
 layout fragment_profile
 layout fragment_recipe_details

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw180dp-notround-v23/values-sw180dp-notround-v23.xml",
+            "outputFile": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw180dp-notround-v23/values-sw180dp-notround-v23.xml",
             "map": [
                 {
-                    "source": "/Users/isaaktempleman/.gradle/caches/transforms-2/files-2.1/305eff15c90953700070057bc66fdcd1/wear-1.0.0/res/values-sw180dp-notround-v23/values-sw180dp-notround-v23.xml",
+                    "source": "/Users/liadhorovitz/.gradle/caches/transforms-2/files-2.1/d5d7cbb2b54934ab26230a532f16fddc/wear-1.0.0/res/values-sw180dp-notround-v23/values-sw180dp-notround-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

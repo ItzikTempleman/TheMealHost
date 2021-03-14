@@ -80,7 +80,7 @@ public class SavedFragment extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
-                Meal deletedMeal = Utils.getList(requireContext(), MEAL).get(position);
+                Meal deletedMeal = (Meal) Utils.getList(requireContext(), MEAL).get(position);
                 remove(deletedMeal);
             }
         };

@@ -38,13 +38,12 @@
                 android:id="@+id/search_recipe_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/transparent"
                 android:drawableStart="@drawable/search_icon"
                 android:hint="@string/search"
                 android:maxLines="1"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/find_recipe_tv"
                 app:layout_constraintTop_toBottomOf="@+id/find_recipe_tv" />
 
             <ProgressBar
@@ -61,36 +60,23 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/filter_image_view"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="65dp"
-                android:background="@drawable/filter"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/filter"
                 android:translationZ="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search_recipe_et" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/move_to_filter"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="60dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/filter_btn_from_fragment"
-                android:text="@string/filter"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_recipe_et" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/choose_meal_rv"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/move_to_filter" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_image_view" />
 
             <ImageView
                 android:id="@+id/choose_meal_empty_state_image_view"
@@ -108,18 +94,19 @@
                 android:id="@+id/previously_searched_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
+                android:layout_marginTop="12dp"
                 android:paddingTop="5dp"
                 android:text="@string/previously_searched"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/search_recipe_et"
                 app:layout_constraintTop_toBottomOf="@+id/choose_meal_rv" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/remove_history"
                 android:layout_width="30dp"
+                android:visibility="gone"
                 android:layout_height="30dp"
                 android:layout_marginVertical="5dp"
                 android:layout_marginEnd="20dp"
@@ -132,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/previously_searched_tv"
                 app:layout_constraintTop_toBottomOf="@+id/remove_history" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

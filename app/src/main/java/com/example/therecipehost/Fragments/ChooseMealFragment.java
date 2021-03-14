@@ -44,9 +44,9 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     private MealAdapter mealAdapter;
     private SavedMealAdapter savedMealAdapter;
     private ProgressBar progressBar;
-    public ImageView emptyStateIV;
+    public ImageView emptyStateIV, filterIV;
     public static List<Meal> mealList;
-    public Button moveToFilterBtn, removeHistoryBtn;
+    public Button removeHistoryBtn;
     private HistoryAdapter historyAdapter;
     public TextView previouslySearchedTV;
 
@@ -80,8 +80,9 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     private void initView(View view) {
         previouslySearchedTV = view.findViewById(R.id.previously_searched_tv);
         removeHistoryBtn = view.findViewById(R.id.remove_history);
+        handleRemoveButtonVisibility();
         searchET = view.findViewById(R.id.search_recipe_et);
-        moveToFilterBtn = view.findViewById(R.id.move_to_filter);
+        filterIV = view.findViewById(R.id.filter_image_view);
         RecyclerView mealRV = view.findViewById(R.id.choose_meal_rv);
         progressBar = view.findViewById(R.id.loading_pb);
         emptyStateIV = view.findViewById(R.id.choose_meal_empty_state_image_view);
@@ -93,6 +94,10 @@ public class ChooseMealFragment extends Fragment implements IResponse {
         Utils.handleSwiping(mealRV);
     }
 
+    private void handleRemoveButtonVisibility() {
+        removeHistoryBtn.setVisibility(Utils.<Meal>getList(requireContext(), HISTORY).isEmpty() ? View.GONE : View.VISIBLE);
+    }
+
     private void initHistory(View view) {
         historyAdapter = new HistoryAdapter(getContext());
         LinearLayoutManager historyLayout = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
@@ -102,8 +107,8 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void loadHistory() {
-        if (!Utils.getList(getContext(), HISTORY).isEmpty()) {
-            List<Meal> savedHistoryList = Utils.getList(getContext(), HISTORY);
+        List<Meal> savedHistoryList = Utils.getList(getContext(), HISTORY);
+        if (!savedHistoryList.isEmpty()) {
             historyAdapter.updateList(savedHistoryList);
         } else historyAdapter.updateList(new ArrayList<>());
     }
@@ -126,13 +131,6 @@ public class ChooseMealFragment extends Fragment implements IResponse {
             }
         });
 
-        moveToFilterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveToFilterDialogFragment();
-            }
-        });
-
         searchET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -148,6 +146,13 @@ public class ChooseMealFragment extends Fragment implements IResponse {
                     progressBar.setVisibility(View.VISIBLE);
                     Utils.loadAsyncTask(s.toString(), ChooseMealFragment.this);
                 }
+            }
+        });
+
+        filterIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToFilterDialogFragment();
             }
         });
 
@@ -168,9 +173,8 @@ public class ChooseMealFragment extends Fragment implements IResponse {
                 }
             }
         }
-        if (!filteredMeals.isEmpty()) {
-            mealAdapter.updateList(filteredMeals);
-        }
+
+        mealAdapter.updateList(filteredMeals.isEmpty() ? mealList : filteredMeals);
     }
 
     @Override
@@ -204,6 +208,7 @@ public class ChooseMealFragment extends Fragment implements IResponse {
     }
 
     private void updateRelevantMealsIfNeeded(List<Meal> mealList) {
+        if (getContext() == null) return;
         List<Meal> savedMealList = Utils.getList(requireContext(), MEAL);
         if (!savedMealList.isEmpty()) {
 

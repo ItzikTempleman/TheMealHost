@@ -1,230 +1,230 @@
 [
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_english_title_recipe_host.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/english_title_recipe_host.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_filter_btn_from_fragment.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/filter_btn_from_fragment.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/anim_blink.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/anim/blink.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/anim_slide_down.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/anim/slide_down.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_progressbar_color.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/progressbar_color.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_recipes.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/recipes.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_profile.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/profile.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_no_results.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/no_results.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_bottom_line_ui.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/bottom_line_ui.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_activity_splash.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/activity_splash.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_filter_btn.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/filter_btn.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_fragment_saved.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/fragment_saved.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_disconnect.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/disconnect.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_sign_in_background_rounded_corner.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/sign_in_background_rounded_corner.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/anim_slide_down.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/anim/slide_down.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_add_to_favorites.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/add_to_favorites.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_project_title_hebrew.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/project_title_hebrew.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_transparent.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/transparent.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_food_image.jpg.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/food_image.jpg"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_fragment_profile.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/fragment_profile.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_remove.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/remove.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_choose_meal_filled.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/choose_meal_filled.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_fragment_choose_meal.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/fragment_choose_meal.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_history_item_view.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/history_item_view.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_search_icon.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/search_icon.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_image_demo_person.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/image_demo_person.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_pop_up_background.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/pop_up_background.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_bottom_line_ui.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/bottom_line_ui.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/ic_launcher_background.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_fragment_recipe_details.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/fragment_recipe_details.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_saved.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/saved.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_added_to_favorites.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/added_to_favorites.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/anim_slide_up.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/anim/slide_up.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_search_recipe_et.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/search_recipe_et.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_half_circle_yellow_background.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/half_circle_yellow_background.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_history_item_view.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/history_item_view.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_meal_item_view.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/meal_item_view.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_filter.webp.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/filter.webp"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_rounded_image_border.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/rounded_image_border.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/activity_main.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_filter_btn.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/filter_btn.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_image_demo_person.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/image_demo_person.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_rounded_image_border.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/rounded_image_border.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_food_image.jpg.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/food_image.jpg"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_no_results.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/no_results.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/anim_slide_up.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/anim/slide_up.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_sign_in_background_rounded_corner.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/sign_in_background_rounded_corner.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_disconnect.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/disconnect.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_half_circle_yellow_background.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/half_circle_yellow_background.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_activity_login.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/activity_login.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_saved.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/saved.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_project_title_hebrew.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/project_title_hebrew.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_fragment_recipe_details.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/fragment_recipe_details.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_next_sign_in_btn.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/next_sign_in_btn.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_fragment_choose_meal.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/fragment_choose_meal.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_added_to_favorites.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/added_to_favorites.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_meal_info_layout.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/meal_info_layout.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_meal_info_layout.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/meal_info_layout.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_recipes.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/recipes.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_activity_login.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/activity_login.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/activity_main.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_next_sign_in_btn.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/next_sign_in_btn.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_saved_item_view.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/saved_item_view.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_progressbar_color.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/progressbar_color.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_meal_item_view.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/meal_item_view.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_choose_meal_white.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/choose_meal_white.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_pop_up_background.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/pop_up_background.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_filter_dialog_fragment.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/filter_dialog_fragment.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_filter_view.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/filter_view.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_english_title_recipe_host.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/english_title_recipe_host.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_add_to_favorites.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/add_to_favorites.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_transparent.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/transparent.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_filter.webp.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/filter.webp"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/anim_blink.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/anim/blink.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_saved_item_view.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/saved_item_view.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_activity_splash.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/activity_splash.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_choose_meal_filled.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/choose_meal_filled.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_choose_meal_white.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/choose_meal_white.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_search_icon.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/search_icon.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_profile.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/profile.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_username_and_password_background_layout.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/username_and_password_background_layout.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_search_recipe_et.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/search_recipe_et.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/drawable_filter_btn_from_fragment.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/drawable/filter_btn_from_fragment.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/layout_fragment_saved.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/layout/fragment_saved.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_remove.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/remove.xml"
     },
     {
-        "merged": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/build/intermediates/res/merged/debug/layout_fragment_profile.xml.flat",
-        "source": "/Users/isaaktempleman/AndroidStudioProjects/Therecipehost/app/src/main/res/layout/fragment_profile.xml"
+        "merged": "/Users/liadhorovitz/Desktop/TheMealHost/app/build/intermediates/res/merged/debug/drawable_username_and_password_background_layout.xml.flat",
+        "source": "/Users/liadhorovitz/Desktop/TheMealHost/app/src/main/res/drawable/username_and_password_background_layout.xml"
     }
 ]

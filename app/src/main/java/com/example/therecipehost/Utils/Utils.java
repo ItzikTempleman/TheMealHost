@@ -120,6 +120,14 @@ public class Utils {
         });
     }
 
+    /*public static void saveMeal(Context context, Meal meal){
+
+    }
+
+    public static List<Meal> saveList(Context context, List<Meal> mealList, String prefKey) {
+
+    }*/
+
     public static List<Meal> saveList(Context context, Meal meal, String prefKey) {
         List<Meal> mealToSave = new ArrayList<>();
         if (!checkIfItemExists(context, meal, prefKey)) {
@@ -136,18 +144,28 @@ public class Utils {
     }
 
     public static List<Meal> getList(Context context, String prefKey) {
-        List<Meal> savedMealList = new ArrayList<>();
+        List<Meal> list = new ArrayList<>();
         SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString(prefKey, null);
         if (json != null) {
-            Type type = new TypeToken<List<Meal>>() {
-            }.getType();
-            savedMealList = gson.fromJson(json, type);
+            Type type = new TypeToken<List<Meal>>() {}.getType();
+            list = gson.fromJson(json, type);
         }
-        return savedMealList;
+        return list;
     }
 
+    public static List<String> getCategoriesList(Context context, String prefKey) {
+        List<String> list = new ArrayList<>();
+        SharedPreferences sharedPreferences = Objects.requireNonNull(context).getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(prefKey, null);
+        if (json != null) {
+            Type type = new TypeToken<List<String>>() {}.getType();
+            list = gson.fromJson(json, type);
+        }
+        return list;
+    }
 
     public static boolean checkIfItemExists(Context context, Meal meal, String prefKey) {
         if (prefKey.equals(HISTORY)) {
